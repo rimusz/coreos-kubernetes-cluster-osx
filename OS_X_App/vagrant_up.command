@@ -6,11 +6,17 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-cd ~/coreos-kubernetes-cluster/vagrant
+cd ~/coreos-kubernetes-cluster/servers/control
+vagrant up
+#
+cd ~/coreos-kubernetes-cluster/servers/nodes
 vagrant up
 
 # path to the bin folder where we store our binary files
 export PATH=$PATH:${HOME}/coreos-kubernetes-cluster/bin
+
+# set etcd endpoint
+ETCD_ENDPOINT=172.17.10.100:4001
 
 # set fleetctl tunnel
 # Add vagrant ssh key to ssh-agent

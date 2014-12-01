@@ -10,7 +10,10 @@ function pause(){
 read -p "$*"
 }
 
-cd ~/coreos-kubernetes-cluster/vagrant
+cd ~/coreos-kubernetes-cluster/servers/control
+vagrant reload
+#
+cd ~/coreos-kubernetes-cluster/servers/nodes
 vagrant reload
 
 # path to the bin folder where we store our binary files
