@@ -7,5 +7,5 @@
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
 cd ~/coreos-kubernetes-cluster/servers/control
-vagrant ssh corekub-01 -- -A
+vagrant ssh corekub-control1 -- -A
 

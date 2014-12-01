@@ -34,8 +34,23 @@
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"%@ ", @"CoreOS-Vagrant Kubernetes Cluster was not set, run from menu 'Setup' - 'Initial setup of CoreOS-Vagrant Kubernetes Cluster' to do that !!! "];
-        [self displayWithMessage:@"CoreOS-Vagrant Kubernetes Cluster" infoText:msg];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"CoreOS-Vagrant Kubernetes Cluster was not set."];
+        [alert setInformativeText:@"Do you want to set it up?"];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // OK clicked
+            [self initialInstall:self];
+        }
+        else
+        {
+            // Cancel clicked
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant Kubernetes Cluster' at any time later one !!! "];
+            [self displayWithMessage:@"You can set Kubernetes Cluster from menu 'Setup':" infoText:msg];
+        }
     }
 }
 
@@ -60,9 +75,23 @@
     }
     else
     {
-        NSString *msg = [NSString stringWithFormat:@"%@ ", @"App was not installed, run from menu 'Setup' - 'Initial setup of CoreOS-Vagrant Kubernetes Cluster' !!! "];
-        [self displayWithMessage:@"CoreOS-Vagrant Kubernetes Cluster" infoText:msg];
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert addButtonWithTitle:@"Cancel"];
+        [alert setMessageText:@"CoreOS-Vagrant Kubernetes Cluster was not set."];
+        [alert setInformativeText:@"Do you want to set it up?"];
+        [alert setAlertStyle:NSWarningAlertStyle];
         
+        if ([alert runModal] == NSAlertFirstButtonReturn) {
+            // OK clicked
+            [self initialInstall:self];
+        }
+        else
+        {
+            // Cancel clicked
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant Kubernetes Cluster' at any time later one !!! "];
+            [self displayWithMessage:@"You can set Kubernetes Cluster from menu 'Setup':" infoText:msg];
+        }
     }
 }
 
@@ -110,7 +139,7 @@
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"coreos-vagrant, etcdclt and fleetctl will be updated";
+    notification.title = @"etcdclt and fleetctl will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -195,34 +224,34 @@
 - (IBAction)runSsh1:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"vagrant ssh shell to core-01 will be opened";
+    notification.informativeText = @"vagrant ssh shell to corekub-control1 will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_ssh1.command"]];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_control1.command"]];
 }
 
 - (IBAction)runSsh2:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"vagrant ssh shell to core-02 will be opened";
+    notification.informativeText = @"vagrant ssh shell to corekub-node1 will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_ssh2.command"]];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_node1.command"]];
 }
 
 - (IBAction)runSsh3:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"vagrant ssh shell to core-03 will be opened";
+    notification.informativeText = @"vagrant ssh shell to corekub-node2 will be opened";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
     NSString *arguments = [[NSString alloc] init];
-    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_ssh3.command"]];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"vagrant_node2.command"]];
 }
 // ssh to hosts
 

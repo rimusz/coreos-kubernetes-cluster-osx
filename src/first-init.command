@@ -19,8 +19,8 @@ cp ~/coreos-kubernetes-cluster/coreos-vagrant-github/Vagrantfile ~/coreos-kubern
 cp ~/coreos-kubernetes-cluster/coreos-vagrant-github/Vagrantfile ~/coreos-kubernetes-cluster/servers/nodes/Vagrantfile
 
 # change VM names to corekub-..
-sed -i "" 's/core-%02d/corekub-%02d/' ~/coreos-kubernetes-cluster/servers/control/Vagrantfile
-sed -i "" 's/core-%02d/corekub-%02d/' ~/coreos-kubernetes-cluster/servers/nodes/Vagrantfile
+sed -i "" 's/core-%02d/corekub-control%02d/' ~/coreos-kubernetes-cluster/servers/control/Vagrantfile
+sed -i "" 's/core-%02d/corekub-node%02d/' ~/coreos-kubernetes-cluster/servers/nodes/Vagrantfile
 # change control IP to static
 sed -i "" 's/172.17.8.#{i+100}/172.17.10.100/g' ~/coreos-kubernetes-cluster/servers/control/Vagrantfile
 # change network subnet and IP to start from for nodes
@@ -32,22 +32,12 @@ rm -f ~/coreos-kubernetes-cluster/tmp/Vagrantfile.control
 
 # config.rb files
 # control
-cp ~/coreos-kubernetes-cluster/coreos-vagrant-github ~/coreos-kubernetes-cluster/servers/control/config.rb
+cp ~/coreos-kubernetes-cluster/coreos-vagrant-github/config.rb.sample ~/coreos-kubernetes-cluster/servers/control/config.rb
+###sed -i "" 's/#$vb_memory = 1024/$vb_memory = 512/' ~/coreos-kubernetes-cluster/servers/control/config.rb
 # nodes
-cp ~/coreos-kubernetes-cluster/coreos-vagrant-github ~/coreos-kubernetes-cluster/nodes/control/config.rb
+cp ~/coreos-kubernetes-cluster/coreos-vagrant-github/config.rb.sample ~/coreos-kubernetes-cluster/servers/nodes/config.rb
 # set nodes to 2
-sed -i "" 's/#$num_instances=1/$num_instances=2/' ~/coreos-kubernetes-cluster/nodes/control/config.rb
-
-#
-echo ""
-echo "Downloading latest coreos-osx-gui-kubernetes-cluster files from github: "
-git clone https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/ ~/coreos-kubernetes-cluster/github
-echo "Done downloading from github !!!"
-echo ""
-
-cp -R ~/coreos-kubernetes-cluster/github/fleet/* ~/coreos-kubernetes-cluster/fleet
-cp -R ~/coreos-kubernetes-cluster/github/kubernetes/* ~/coreos-kubernetes-cluster/kubernetes
-cp -R ~/coreos-kubernetes-cluster/github/servers/* ~/coreos-kubernetes-cluster/servers
+sed -i "" 's/#$num_instances=1/$num_instances=2/' ~/coreos-kubernetes-cluster/servers/nodes/config.rb
 
 ###
 
@@ -136,21 +126,21 @@ ssh-add ~/.vagrant.d/insecure_private_key
 
 # download etcdctl and fleetctl
 #
-cd ~/coreos-kubernetes-cluster/vagrant
-LATEST_RELEASE=$(vagrant ssh core-01 -c "etcdctl --version" | cut -d " " -f 3- | tr -d '\r' )
+cd ~/coreos-kubernetes-cluster/servers/control
+LATEST_RELEASE=$(vagrant ssh corekub-control01 -c "etcdctl --version" | cut -d " " -f 3- | tr -d '\r' )
 cd ~/coreos-kubernetes-cluster/bin
 echo "Downloading etcdctl $LATEST_RELEASE for OS X"
 curl -L -o etcd.zip "https://github.com/coreos/etcd/releases/download/v$LATEST_RELEASE/etcd-v$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "etcd.zip" "etcd-v$LATEST_RELEASE-darwin-amd64/etcdctl"
 rm -f etcd.zip
 # set etcd endpoint
-ETCD_ENDPOINT=172.17.10.100:4001
+export ETCD_ENDPOINT=172.17.10.100:4001
 echo ""
 etcdctl ls /
 echo ""
 #
-cd ~/coreos-kubernetes-cluster/vagrant
-LATEST_RELEASE=$(vagrant ssh core-01 -c 'fleetctl version' | cut -d " " -f 3- | tr -d '\r')
+cd ~/coreos-kubernetes-cluster/servers/control
+LATEST_RELEASE=$(vagrant ssh corekub-control01 -c 'fleetctl version' | cut -d " " -f 3- | tr -d '\r')
 cd ~/coreos-kubernetes-cluster/bin
 echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"

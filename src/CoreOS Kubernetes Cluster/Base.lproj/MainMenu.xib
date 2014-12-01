@@ -685,19 +685,19 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="jV7-Ne-Ped"/>
-                <menuItem title="SSH to core-01" id="dvF-TI-XNx">
+                <menuItem title="SSH to corekub-control01" id="dvF-TI-XNx">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh1:" target="494" id="MQP-2q-QP0"/>
                     </connections>
                 </menuItem>
-                <menuItem title="SSH to core-02" id="93Y-3j-w7s">
+                <menuItem title="SSH to corekub-node01" id="93Y-3j-w7s">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh2:" target="494" id="kdd-B4-CSh"/>
                     </connections>
                 </menuItem>
-                <menuItem title="SSH to core-03" id="hQV-nK-suP">
+                <menuItem title="SSH to corekub-node02" id="hQV-nK-suP">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="runSsh3:" target="494" id="deR-gE-bQ0"/>
@@ -742,7 +742,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="IpY-jd-Luh"/>
-                            <menuItem title="Initial setup of CoreOS-Vagrant Cluster" id="dRI-wk-81S">
+                            <menuItem title="Initial setup of CoreOS-Vagrant Kubernetes Cluster" id="dRI-wk-81S">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="initialInstall:" target="494" id="n4m-Uq-Dx0"/>

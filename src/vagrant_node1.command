@@ -7,5 +7,5 @@
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
 cd ~/coreos-kubernetes-cluster/servers/nodes
-vagrant ssh corekub-02 -- -A
+vagrant ssh corekub-node1 -- -A
 

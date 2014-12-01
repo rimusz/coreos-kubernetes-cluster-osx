@@ -16,7 +16,10 @@ vagrant up
 export PATH=$PATH:${HOME}/coreos-kubernetes-cluster/bin
 
 # set etcd endpoint
-ETCD_ENDPOINT=172.17.10.100:4001
+export ETCD_ENDPOINT=172.17.10.100:4001
+echo ""
+etcdctl ls /
+echo ""
 
 # set fleetctl tunnel
 # Add vagrant ssh key to ssh-agent
