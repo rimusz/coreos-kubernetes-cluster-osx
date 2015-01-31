@@ -1,7 +1,0 @@
-
-## Start - Inserted by CoreOS-Vagrant Kubernetes Cluster App
-
-      # Change corekub-01 host ssh port forward to 2422, so that will not clash with other vagrant VM using 2222
-      config.vm.network "forwarded_port", guest: 22, host: 2422, id: "ssh", auto_correct: true
-
-## End - Inserted by CoreOS-Vagrant Kubernetes Cluster App

@@ -10,10 +10,10 @@ function pause(){
 read -p "$*"
 }
 
-cd ~/coreos-kubernetes-cluster/servers/nodes
+cd ~/coreos-k8s-cluster/workers
 vagrant destroy
 #
-cd ~/coreos-kubernetes-cluster/servers/control
+cd ~/coreos-k8s-cluster/control
 vagrant destroy
 
 pause 'Press [Enter] key to continue...'

@@ -2,21 +2,50 @@
 
 coreos:
   fleet:
-    etcd_servers: http://127.0.0.1:4001
+    public-ip: $public_ipv4
+    etcd_servers: http://172.17.15.101:4001
     metadata: role=control
   etcd:
     name: etcd
-    addr: $private_ipv4:4001
+    addr: $public_ipv4:4001
     bind-addr: 0.0.0.0
-    peer-addr: $private_ipv4:7001
+    peer-addr: $public_ipv4:7001
     cluster-active-size: 1
     etcd-http-read-timeout: 86400
     snapshot: true
   units:
+    - name: flanneld.service
+      drop-ins:
+        - name: 50-network-config.conf
+          content: |
+            [Service]
+            ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{ "Network": "10.244.0.0/16" }'
+      command: start
+    - name: setup-network-environment.service
+      command: start
+      content: |
+        [Unit]
+        Description=Setup Network Environment
+        Documentation=https://github.com/kelseyhightower/setup-network-environment
+        Requires=network-online.target
+        After=network-online.target
+        [Service]
+        ExecStartPre=/usr/bin/mkdir -p /opt/bin
+        ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/k8s/setup-network-environment 
+        ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
+        ExecStart=/opt/bin/setup-network-environment
+        RemainAfterExit=yes
+        Type=oneshot
+    - name: docker.service
+      drop-ins:
+        - name: 50-insecure-registry.conf
+          content: |
+            [Service]
+            Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
+      command: start
     - name: etcd.service
       command: start
     - name: fleet.service
       command: start
   update:
-    group: alpha
     reboot-strategy: off

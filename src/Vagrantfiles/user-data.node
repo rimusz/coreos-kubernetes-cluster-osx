@@ -2,7 +2,8 @@
 
 coreos:
   fleet:
-    etcd_servers: http://172.17.10.100:4001
+    public-ip: $public_ipv4
+    etcd_servers: http://172.17.15.101:4001
     metadata: role=node
   units:
     - name: etcd.service
@@ -18,10 +19,10 @@ coreos:
         Description=flannel is an etcd backed overlay network for containers
         [Service]
         Type=notify
-        ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/k8s/flanneld
+        ExecStartPre=/usr/bin/mkdir -p /opt/bin
+        ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/k8s/flanneld
         ExecStartPre=/usr/bin/chmod +x /opt/bin/flanneld
-        ExecStart=/opt/bin/flanneld -etcd-endpoints http://172.17.10.100:4001
+        ExecStart=/opt/bin/flanneld --iface=eth1 --etcd-endpoints http://172.17.15.101:4001
     - name: docker.service
       command: start
       content: |
@@ -33,8 +34,7 @@ coreos:
         [Service]
         EnvironmentFile=/run/flannel/subnet.env
         ExecStartPre=/bin/mount --make-rprivate /
-        ExecStart=/usr/bin/docker -d --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU} -s=btrfs -H fd://
-
+        ExecStart=/usr/bin/docker -d --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU} -H fd://
         [Install]
         WantedBy=multi-user.target
     - name: setup-network-environment.service
@@ -47,24 +47,17 @@ coreos:
         After=network-online.target
         [Service]
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/k8s/setup-network-environment 
+        ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/k8s/setup-network-environment 
         ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes
         Type=oneshot
-    - name: systemd-journal-gatewayd.socket
-      command: start
-      enable: yes
-      content: |
-        [Unit]
-        Description=Journal Gateway Service Socket
-
-        [Socket]
-        ListenStream=/var/run/journald.sock
-        Service=systemd-journal-gatewayd.service
-
-        [Install]
-        WantedBy=sockets.target
+     - name: docker.service
+       drop-ins:
+         - name: 50-insecure-registry.conf
+           content:
+             [Service]
+             Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
+     command: start
   update:
-    group: alpha
     reboot-strategy: off

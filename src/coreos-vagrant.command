@@ -8,8 +8,8 @@
 
 
 # pass first argument - up, halt ...
-cd ~/coreos-kubernetes-cluster/servers/control
+cd ~/coreos-k8s-cluster/control
 vagrant $1
 
-cd ~/coreos-kubernetes-cluster/servers/nodes
+cd ~/coreos-k8s-cluster/workers
 vagrant $1

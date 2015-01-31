@@ -6,6 +6,6 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
-cd ~/coreos-kubernetes-cluster/servers/nodes
-vagrant ssh corekub-node1 -- -A
+cd ~/coreos-k8s-cluster/workers
+vagrant ssh k8snode-01 -- -A
 

@@ -10,19 +10,20 @@ function pause(){
 read -p "$*"
 }
 
-cd ~/coreos-kubernetes-cluster/servers/control
+cd ~/coreos-k8s-cluster/control
 vagrant up
-vagrant ssh corekub-01 -c "sudo update_engine_client -update"
-echo "Done with corekub-01 "
+vagrant ssh k8smaster-01 -c "sudo update_engine_client -update"
+echo "Done with k8smaster-01 "
 echo " "
 #
-cd ~/coreos-kubernetes-cluster/servers/nodes
-vagrant ssh corekub-02 -c "sudo update_engine_client -update"
-echo "Done with corekub-02 "
+cd ~/coreos-k8s-cluster/workers
+vagrant ssh k8snode-01 -c "sudo update_engine_client -update"
+echo "Done with k8snode-01 "
 echo " "
-vagrant ssh corekub-03 -c "sudo update_engine_client -update"
-echo "Done with corekub-03 "
+vagrant ssh k8snode-02 -c "sudo update_engine_client -update"
+echo "Done with k8snode-02 "
 echo " "
 
 echo "Update has finished !!!"
+echo "You need to reboot machines if update was sucessful"
 pause 'Press [Enter] key to continue...'

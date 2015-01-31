@@ -10,21 +10,26 @@ function pause(){
 read -p "$*"
 }
 
-cd ~/coreos-kubernetes-cluster/servers/control
+cd ~/coreos-k8s-cluster/control
 vagrant reload
 #
-cd ~/coreos-kubernetes-cluster/servers/nodes
+cd ~/coreos-k8s-cluster/workers
 vagrant reload
 
 # path to the bin folder where we store our binary files
-export PATH=$PATH:${HOME}/coreos-kubernetes-cluster/bin
+export PATH=$PATH:${HOME}/coreos-k8s-cluster/bin
 
-# set fleetctl tunnel
-# Add vagrant ssh key to ssh-agent
-###vagrant ssh-config core-01 | sed -n "s/IdentityFile//gp" | xargs ssh-add
-ssh-add ~/.vagrant.d/insecure_private_key
-export FLEETCTL_TUNNEL=127.0.0.1:2422
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
+# kubernetes master
+export KUBERNETES_MASTER=http://172.17.15.101:8080
+
+# set etcd endpoint
+export ETCDCTL_PEERS=http://172.17.15.101:4001
+echo ""
+etcdctl --no-sync ls / --recursive
+echo ""
+
+# set fleetctl endpoint
+export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
 echo "fleetctl list-machines :"
 fleetctl list-machines
 

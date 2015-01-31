@@ -26,13 +26,13 @@ do
     if [ $RESPONSE = 1 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
         #
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
         channel="Alpha"
         LOOP=0
     fi
@@ -40,13 +40,13 @@ do
     if [ $RESPONSE = 2 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
         #
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
         channel="Beta"
         LOOP=0
     fi
@@ -54,13 +54,13 @@ do
     if [ $RESPONSE = 3 ]
     then
         VALID_MAIN=1
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
-        sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-kubernetes-cluster/servers/control/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
         #
-        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
-        sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-kubernetes-cluster/servers/nodes/config.rb
+        sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
         channel="Stable"
         LOOP=0
     fi

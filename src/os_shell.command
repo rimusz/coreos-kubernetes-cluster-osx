@@ -1,16 +1,10 @@
 #!/bin/bash
 
-#  vagrant_up.command
+#  os_shell.command
 #  CoreOS Kubernetes Cluster for OS X
 #
 #  Created by Rimantas on 01/12/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
-
-cd ~/coreos-k8s-cluster/control
-vagrant up
-#
-cd ~/coreos-k8s-cluster/workers
-vagrant up
 
 # path to the bin folder where we store our binary files
 export PATH=$PATH:${HOME}/coreos-k8s-cluster/bin
@@ -26,7 +20,6 @@ echo ""
 
 # set fleetctl endpoint
 export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
-export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines :"
 fleetctl list-machines
 

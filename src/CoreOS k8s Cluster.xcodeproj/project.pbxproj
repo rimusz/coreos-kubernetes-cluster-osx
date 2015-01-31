@@ -16,7 +16,6 @@
 		011BBA3F1A2A94A100AAB35B /* vagrant_reload.command in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA3E1A2A94A100AAB35B /* vagrant_reload.command */; };
 		0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */ = {isa = PBXBuildFile; fileRef = 0145318318FF209D007F9C95 /* coreos-vagrant.command */; };
 		01689B731A2D1A260099CB78 /* fleet in Resources */ = {isa = PBXBuildFile; fileRef = 01689B721A2D1A260099CB78 /* fleet */; };
-		01689B751A2D1A470099CB78 /* kubernetes in Resources */ = {isa = PBXBuildFile; fileRef = 01689B741A2D1A470099CB78 /* kubernetes */; };
 		01689B771A2D1CA80099CB78 /* Vagrantfiles in Resources */ = {isa = PBXBuildFile; fileRef = 01689B761A2D1CA80099CB78 /* Vagrantfiles */; };
 		01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */; };
 		01741B5F190DB7E300BB1F91 /* vagrant_control1.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B5E190DB7E300BB1F91 /* vagrant_control1.command */; };
@@ -34,6 +33,7 @@
 		01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855218A6C4E300BC630D /* MainMenu.xib */; };
 		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		01F0282C1A7C54C8008C37AA /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01F0282B1A7C54C8008C37AA /* os_shell.command */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,10 +44,9 @@
 		011BBA381A2A829F00AAB35B /* vagrant_destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_destroy.command; sourceTree = "<group>"; };
 		011BBA3A1A2A842A00AAB35B /* change_release_channel.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = change_release_channel.command; sourceTree = "<group>"; };
 		011BBA3E1A2A94A100AAB35B /* vagrant_reload.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_reload.command; sourceTree = "<group>"; };
-		0133608F18A70E0C0024B1CB /* CoreOS Kubernetes Cluster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS Kubernetes Cluster.entitlements"; sourceTree = "<group>"; };
+		0133608F18A70E0C0024B1CB /* CoreOS k8s Cluster.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CoreOS k8s Cluster.entitlements"; sourceTree = "<group>"; };
 		0145318318FF209D007F9C95 /* coreos-vagrant.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant.command"; sourceTree = "<group>"; };
 		01689B721A2D1A260099CB78 /* fleet */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fleet; sourceTree = SOURCE_ROOT; };
-		01689B741A2D1A470099CB78 /* kubernetes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = kubernetes; sourceTree = SOURCE_ROOT; };
 		01689B761A2D1CA80099CB78 /* Vagrantfiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Vagrantfiles; sourceTree = SOURCE_ROOT; };
 		01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "coreos-vagrant-install.command"; sourceTree = SOURCE_ROOT; };
 		01741B5E190DB7E300BB1F91 /* vagrant_control1.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_control1.command; sourceTree = SOURCE_ROOT; };
@@ -57,15 +56,15 @@
 		01AD94B71A277708009A400B /* gsed */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gsed; sourceTree = SOURCE_ROOT; };
 		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
-		01E2853A18A6C4E300BC630D /* CoreOS Kubernetes Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS Kubernetes Cluster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01E2853A18A6C4E300BC630D /* CoreOS k8s Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS k8s Cluster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		01E2854018A6C4E300BC630D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		01E2854118A6C4E300BC630D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		01E2854218A6C4E300BC630D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		01E2854518A6C4E300BC630D /* CoreOS Kubernetes Cluster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreOS Kubernetes Cluster-Info.plist"; sourceTree = "<group>"; };
+		01E2854518A6C4E300BC630D /* CoreOS k8s Cluster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreOS k8s Cluster-Info.plist"; sourceTree = "<group>"; };
 		01E2854718A6C4E300BC630D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		01E2854918A6C4E300BC630D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		01E2854B18A6C4E300BC630D /* CoreOS Kubernetes Cluster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreOS Kubernetes Cluster-Prefix.pch"; sourceTree = "<group>"; };
+		01E2854B18A6C4E300BC630D /* CoreOS k8s Cluster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreOS k8s Cluster-Prefix.pch"; sourceTree = "<group>"; };
 		01E2854D18A6C4E300BC630D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		01E2854F18A6C4E300BC630D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		01E2855018A6C4E300BC630D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -73,6 +72,7 @@
 		01E2855518A6C4E300BC630D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		01F0282B1A7C54C8008C37AA /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +91,6 @@
 			isa = PBXGroup;
 			children = (
 				01689B761A2D1CA80099CB78 /* Vagrantfiles */,
-				01689B741A2D1A470099CB78 /* kubernetes */,
 				01689B721A2D1A260099CB78 /* fleet */,
 				01AD94B71A277708009A400B /* gsed */,
 				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
@@ -104,7 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				01E285D018A6F79800BC630D /* Images */,
-				01E2854318A6C4E300BC630D /* CoreOS Kubernetes Cluster */,
+				01E2854318A6C4E300BC630D /* CoreOS k8s Cluster */,
 				014E6F8B18B63AF700E697C0 /* Installation Files */,
 				01E285B918A6E23C00BC630D /* Scripts */,
 				01E2853C18A6C4E300BC630D /* Frameworks */,
@@ -115,7 +114,7 @@
 		01E2853B18A6C4E300BC630D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				01E2853A18A6C4E300BC630D /* CoreOS Kubernetes Cluster.app */,
+				01E2853A18A6C4E300BC630D /* CoreOS k8s Cluster.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,26 +139,26 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		01E2854318A6C4E300BC630D /* CoreOS Kubernetes Cluster */ = {
+		01E2854318A6C4E300BC630D /* CoreOS k8s Cluster */ = {
 			isa = PBXGroup;
 			children = (
-				0133608F18A70E0C0024B1CB /* CoreOS Kubernetes Cluster.entitlements */,
+				0133608F18A70E0C0024B1CB /* CoreOS k8s Cluster.entitlements */,
 				01E2854F18A6C4E300BC630D /* AppDelegate.h */,
 				01E2855018A6C4E300BC630D /* AppDelegate.m */,
 				01E2855218A6C4E300BC630D /* MainMenu.xib */,
 				01E2855518A6C4E300BC630D /* Images.xcassets */,
 				01E2854418A6C4E300BC630D /* Supporting Files */,
 			);
-			path = "CoreOS Kubernetes Cluster";
+			path = "CoreOS k8s Cluster";
 			sourceTree = "<group>";
 		};
 		01E2854418A6C4E300BC630D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				01E2854518A6C4E300BC630D /* CoreOS Kubernetes Cluster-Info.plist */,
+				01E2854518A6C4E300BC630D /* CoreOS k8s Cluster-Info.plist */,
 				01E2854618A6C4E300BC630D /* InfoPlist.strings */,
 				01E2854918A6C4E300BC630D /* main.m */,
-				01E2854B18A6C4E300BC630D /* CoreOS Kubernetes Cluster-Prefix.pch */,
+				01E2854B18A6C4E300BC630D /* CoreOS k8s Cluster-Prefix.pch */,
 				01E2854C18A6C4E300BC630D /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -168,6 +167,7 @@
 		01E285B918A6E23C00BC630D /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				01F0282B1A7C54C8008C37AA /* os_shell.command */,
 				0145318318FF209D007F9C95 /* coreos-vagrant.command */,
 				011BBA3A1A2A842A00AAB35B /* change_release_channel.command */,
 				011BBA381A2A829F00AAB35B /* vagrant_destroy.command */,
@@ -196,9 +196,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		01E2853918A6C4E300BC630D /* CoreOS Kubernetes Cluster */ = {
+		01E2853918A6C4E300BC630D /* CoreOS k8s Cluster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS Kubernetes Cluster" */;
+			buildConfigurationList = 01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS k8s Cluster" */;
 			buildPhases = (
 				01E2853618A6C4E300BC630D /* Sources */,
 				01E2853718A6C4E300BC630D /* Frameworks */,
@@ -208,9 +208,9 @@
 			);
 			dependencies = (
 			);
-			name = "CoreOS Kubernetes Cluster";
-			productName = "CoreOS Kubernetes Cluster";
-			productReference = 01E2853A18A6C4E300BC630D /* CoreOS Kubernetes Cluster.app */;
+			name = "CoreOS k8s Cluster";
+			productName = "CoreOS k8s Cluster";
+			productReference = 01E2853A18A6C4E300BC630D /* CoreOS k8s Cluster.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -232,7 +232,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS Kubernetes Cluster" */;
+			buildConfigurationList = 01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS k8s Cluster" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -245,7 +245,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				01E2853918A6C4E300BC630D /* CoreOS Kubernetes Cluster */,
+				01E2853918A6C4E300BC630D /* CoreOS k8s Cluster */,
 			);
 		};
 /* End PBXProject section */
@@ -260,7 +260,6 @@
 				01689B771A2D1CA80099CB78 /* Vagrantfiles in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */,
-				01689B751A2D1A470099CB78 /* kubernetes in Resources */,
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
 				011BBA301A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
@@ -279,6 +278,7 @@
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,
 				011BBA351A2A7B0600AAB35B /* vagrant_node2.command in Resources */,
+				01F0282C1A7C54C8008C37AA /* os_shell.command in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,10 +400,10 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreOS Kubernetes Cluster/CoreOS Kubernetes Cluster-Prefix.pch";
-				INFOPLIST_FILE = "CoreOS Kubernetes Cluster/CoreOS Kubernetes Cluster-Info.plist";
+				GCC_PREFIX_HEADER = "CoreOS k8s Cluster/CoreOS k8s Cluster-Prefix.pch";
+				INFOPLIST_FILE = "CoreOS k8s Cluster/CoreOS k8s Cluster-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "CoreOS Kubernetes Cluster";
+				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -417,10 +417,10 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreOS Kubernetes Cluster/CoreOS Kubernetes Cluster-Prefix.pch";
-				INFOPLIST_FILE = "CoreOS Kubernetes Cluster/CoreOS Kubernetes Cluster-Info.plist";
+				GCC_PREFIX_HEADER = "CoreOS k8s Cluster/CoreOS k8s Cluster-Prefix.pch";
+				INFOPLIST_FILE = "CoreOS k8s Cluster/CoreOS k8s Cluster-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				PRODUCT_NAME = "CoreOS Kubernetes Cluster";
+				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -429,7 +429,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS Kubernetes Cluster" */ = {
+		01E2853518A6C4E300BC630D /* Build configuration list for PBXProject "CoreOS k8s Cluster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E2856918A6C4E300BC630D /* Debug */,
@@ -438,7 +438,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS Kubernetes Cluster" */ = {
+		01E2856B18A6C4E300BC630D /* Build configuration list for PBXNativeTarget "CoreOS k8s Cluster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				01E2856C18A6C4E300BC630D /* Debug */,
