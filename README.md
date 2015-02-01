@@ -18,7 +18,7 @@ How to install
 
 Required software:
 * [VirtualBox for Mac OS X hosts](https://www.virtualbox.org/wiki/Downloads), [Vagrant for Mac OS X](http://www.vagrantup.com/downloads.html) and [iTerm 2](http://www.iterm2.com/#/section/downloads)
-* Download `CoreOS k8s Cluster GUI latest.zip` from the [Releases Page](https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/releases) and unzip it.
+* Unzip downloaded file and copy e.g. the App to Desktop.
 * Start the `CoreOS k8s Cluster` App and from menu `Setup` and choose: `Initial setup of CoreOS-Vagrant k8s Cluster` 
 
 The install will do the following:
