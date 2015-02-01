@@ -24,7 +24,7 @@ echo " "
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.15.101:4001
 echo "etcd cluster:"
-etcdctl --no-sync ls / --recursive
+etcdctl --no-sync ls /
 echo ""
 
 # set fleetctl endpoint
