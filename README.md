@@ -30,7 +30,7 @@ The install will do the following:
 * master machine will be set with IP `172.17.15.101` and two cluster nodes with IPs: `172.17.15.102 and 172.17.15.103`
 * It will download latest vagrant VBox and run vagrant up to initialise VM
 * It will download and install `fleetctl, etcdctl, kubectl and kubecfg` to `~/coreos-k8s-cluster/bin/`
-
+* Kubernetes services will be installed with fleet units which are placed in `~/coreos-k8s-cluster/fleet`, that allows if necessary very easely to update fleet units.
 
 How it works
 ------------
@@ -50,6 +50,13 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 * `Updates/Check for updates` will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run. 
 * `SSH to k8smaster01 and k8snode-02/03` menu options will open VM shells
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
+
+Usage
+------------
+
+You're now ready to use Kubernetes cluster.
+
+Some examples to start with [Kubernetes examples](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/examples/).
 
 Other links
 -----------
