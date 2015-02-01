@@ -124,14 +124,11 @@ ssh-add ~/.vagrant.d/insecure_private_key
 # download kubernetes binaries
 cd ~/coreos-k8s-cluster/tmp
 K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
-echo "Downloading kubernetes $LATEST_RELEASE for OS X"
+echo "Downloading kubernetes $K8S_VERSION for OS X"
 ~/coreos-k8s-cluster/bin/wget -c https://github.com/GoogleCloudPlatform/kubernetes/releases/download/$K8S_VERSION/kubernetes.tar.gz
 tar -xzvf kubernetes.tar.gz kubernetes/platforms/darwin/amd64
 cp -f ./kubernetes/platforms/darwin/amd64/kubectl ~/coreos-k8s-cluster/bin
 cp -f ./kubernetes/platforms/darwin/amd64/kubecfg ~/coreos-k8s-cluster/bin
-
-# set kubernetes master
-export KUBERNETES_MASTER=http://172.17.15.101:8080
 
 # clean up tmp folder
 rm -fr ~/coreos-k8s-cluster/tmp/*
@@ -182,5 +179,3 @@ echo " "
 echo "Run from menu 'Up' to power up VM and a terninal window preset with fleetctl, etcdctl and k8s master IP will be opened !!!"
 echo " "
 pause 'Press [Enter] key to continue...'
-
-
