@@ -22,6 +22,7 @@ fleetctl list-machines
 echo " "
 echo "fleetctl list-units:"
 fleetctl list-units
+echo " "
 
 # set kubernetes master
 export KUBERNETES_MASTER=http://172.17.15.101:8080
