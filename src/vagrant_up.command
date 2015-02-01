@@ -32,6 +32,9 @@ export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
+echo " "
+echo "fleetctl list-units:"
+fleetctl list-units
 
 cd ~/coreos-k8s-cluster/kubernetes
 

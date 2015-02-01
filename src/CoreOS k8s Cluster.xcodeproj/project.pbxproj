@@ -410,6 +410,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS k8s Cluster/CoreOS k8s Cluster-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS k8s Cluster/CoreOS k8s Cluster-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
@@ -427,6 +431,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoreOS k8s Cluster/CoreOS k8s Cluster-Prefix.pch";
 				INFOPLIST_FILE = "CoreOS k8s Cluster/CoreOS k8s Cluster-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
