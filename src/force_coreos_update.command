@@ -25,5 +25,6 @@ echo "Done with k8snode-02 "
 echo " "
 
 echo "Update has finished !!!"
-echo "You need to reboot machines if update was sucessful"
+echo "You need to reboot machines if CoreOS update was successful"
+echo "Just use 'Reload' from the App menu"
 pause 'Press [Enter] key to continue...'

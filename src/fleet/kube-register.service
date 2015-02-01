@@ -3,7 +3,7 @@ Description=Kubernetes Registration Service
 Documentation=https://github.com/kelseyhightower/kube-register
 
 [Service]
-ExecStartPre=/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/k8s/kube-register
+ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin http://storage.googleapis.com/k8s/kube-register'
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-register
 ExecStart=/opt/bin/kube-register \
 --metadata=role=node \

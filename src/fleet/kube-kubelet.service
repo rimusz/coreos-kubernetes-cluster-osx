@@ -6,7 +6,7 @@ After=setup-network-environment.service
 
 [Service]
 EnvironmentFile=/etc/network-environment
-ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kubelet
+ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kubelet'
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kubelet
 ExecStart=/opt/bin/kubelet \
 --address=0.0.0.0 \

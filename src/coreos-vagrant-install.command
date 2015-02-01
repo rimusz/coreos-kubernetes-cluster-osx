@@ -8,7 +8,6 @@
 
     # create "coreos-kubernetes-cluster" and other required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-k8s-cluster
-    mkdir ~/coreos-k8s-cluster/coreos-vagrant-github
     mkdir ~/coreos-k8s-cluster/tmp
     mkdir ~/coreos-k8s-cluster/bin
     mkdir ~/coreos-k8s-cluster/fleet
@@ -22,6 +21,10 @@
     # copy gsed to ~/coreos--k8s--cluster/bin
     cp "$1"/gsed ~/coreos-k8s-cluster/bin
     chmod 755 ~/coreos-k8s-cluster/bin/gsed
+
+    # copy wget with https support to ~/coreos--k8s--cluster/bin
+    cp "$1"/wget ~/coreos-k8s-cluster/bin
+    chmod 755 ~/coreos-k8s-cluster/bin/wget
 
     # copy other files
     # user-data files
