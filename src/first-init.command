@@ -122,7 +122,7 @@ vagrant up
 ssh-add ~/.vagrant.d/insecure_private_key
 
 # download kubernetes binaries
-~/coreos-k8s-cluster/tmp
+cd ~/coreos-k8s-cluster/tmp
 K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
 echo "Downloading kubernetes $LATEST_RELEASE for OS X"
 ~/coreos-k8s-cluster/bin/wget -c https://github.com/GoogleCloudPlatform/kubernetes/releases/download/$K8S_VERSION/kubernetes.tar.gz
@@ -132,9 +132,6 @@ cp -f ./kubernetes/platforms/darwin/amd64/kubecfg ~/coreos-k8s-cluster/bin
 
 # set kubernetes master
 export KUBERNETES_MASTER=http://172.17.15.101:8080
-echo "k8s minions list:"
-kubectl get minions
-echo " "
 
 # clean up tmp folder
 rm -fr ~/coreos-k8s-cluster/tmp/*
@@ -152,7 +149,7 @@ rm -f etcd.zip
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.15.101:4001
 echo "etcd cluster:"
-etcdctl ls /
+~/coreos-k8s-cluster/bin/etcdctl ls /
 echo " "
 #
 cd ~/coreos-k8s-cluster/control
@@ -166,15 +163,15 @@ rm -f fleet.zip
 export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
-fleetctl list-machines
+~/coreos-k8s-cluster/bin/fleetctl list-machines
 echo " "
 #
 echo "Installing fleet units from '~/coreos-k8s-cluster/fleet' folder:"
 cd ~/coreos-k8s-cluster/fleet
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false submit *.service
-~/coreos-osx/bin/fleetctl --strict-host-key-checking=false start *.service
+~/coreos-k8s-cluster/bin/fleetctl --strict-host-key-checking=false submit *.service
+~/coreos-k8s-cluster/bin/fleetctl --strict-host-key-checking=false start *.service
 echo "Finished installing fleet units"
-fleetctl list-units
+~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "
 
 #
