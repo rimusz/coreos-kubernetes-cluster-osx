@@ -33,6 +33,8 @@ export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
 echo " "
+cd ~/coreos-k8s-cluster/fleet
+fleetctl start *.service
 echo "fleetctl list-units:"
 fleetctl list-units
 
