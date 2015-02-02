@@ -13,7 +13,7 @@ cd ~/coreos-k8s-cluster/workers
 vagrant up
 
 # path to the bin folder where we store our binary files
-export PATH=$PATH:${HOME}/coreos-k8s-cluster/bin
+export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 
 # set kubernetes master
 export KUBERNETES_MASTER=http://172.17.15.101:8080

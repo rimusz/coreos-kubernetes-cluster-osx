@@ -7,7 +7,7 @@
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
 # path to the bin folder where we store our binary files
-export PATH=$PATH:${HOME}/coreos-k8s-cluster/bin
+export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.15.101:4001
