@@ -48,7 +48,7 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 
 * `Updates/Force CoreOS update` will be run `sudo update_engine_client -update` on each CoreOS VM.
 * `Updates/Check for updates` will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run. 
-* `SSH to k8smaster01 and k8snode-02/03` menu options will open VM shells
+* `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
 
 Usage
