@@ -10,7 +10,7 @@ CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 
 Download
 --------
-Head over to the [Releases Page](https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/releases) to grab the latest ZIP file.
+Head over to the [Releases Page](https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/releases) to grab the latest release.
 
 
 How to install
