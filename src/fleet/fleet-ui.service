@@ -18,4 +18,3 @@ RestartSec=10s
 
 [X-Fleet]
 MachineMetadata=role=control
-

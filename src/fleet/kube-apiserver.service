@@ -4,7 +4,7 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kube-apiserver'
+ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl 'https://api.github.com/repos/GoogleCloudPlatform/kubernetes/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )/bin/linux/amd64/kube-apiserver'
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-apiserver
 ExecStart=/opt/bin/kube-apiserver \
 --address=0.0.0.0 \
@@ -13,6 +13,7 @@ ExecStart=/opt/bin/kube-apiserver \
 --etcd_servers=http://127.0.0.1:4001 \
 --public_address_override=172.17.15.101 \
 --logtostderr=true
+
 Restart=always
 RestartSec=10
 

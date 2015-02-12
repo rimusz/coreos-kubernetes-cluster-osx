@@ -8,6 +8,7 @@
 
     # create "coreos-kubernetes-cluster" and other required folders and files at user's home folder where all the data will be stored
     mkdir ~/coreos-k8s-cluster
+    mkdir ~/coreos-k8s-cluster/.env
     mkdir ~/coreos-k8s-cluster/tmp
     mkdir ~/coreos-k8s-cluster/bin
     mkdir ~/coreos-k8s-cluster/fleet

@@ -123,7 +123,7 @@ ssh-add ~/.vagrant.d/insecure_private_key
 
 # download kubernetes binaries
 cd ~/coreos-k8s-cluster/tmp
-K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
+K8S_VERSION=$(curl 'https://api.github.com/repos/GoogleCloudPlatform/kubernetes/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )
 echo "Downloading kubernetes $K8S_VERSION for OS X"
 ~/coreos-k8s-cluster/bin/wget -c https://github.com/GoogleCloudPlatform/kubernetes/releases/download/$K8S_VERSION/kubernetes.tar.gz
 tar -xzvf kubernetes.tar.gz kubernetes/platforms/darwin/amd64
@@ -165,8 +165,8 @@ echo " "
 #
 echo "Installing fleet units from '~/coreos-k8s-cluster/fleet' folder:"
 cd ~/coreos-k8s-cluster/fleet
-~/coreos-k8s-cluster/bin/fleetctl --strict-host-key-checking=false submit *.service
-~/coreos-k8s-cluster/bin/fleetctl --strict-host-key-checking=false start *.service
+~/coreos-k8s-cluster/bin/fleetctl submit *.service
+~/coreos-k8s-cluster/bin/fleetctl start *.service
 echo "Finished installing fleet units"
 ~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "

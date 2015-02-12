@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  CoreOS Kubernetes Cluster for OS X
 //
-//  Created by Rimantas on 01/04/2014.
+//  Created by Rimantas on 01/12/2014.
 //  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 //
 
@@ -30,6 +30,11 @@
     if([[NSFileManager defaultManager]
         fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
     {
+        // run set_env
+        NSString *scriptName = [[NSString alloc] init];
+        NSString *arguments = [[NSString alloc] init];
+        [self runScript:scriptName = @"set_env" arguments:arguments = _resoucesPathFromApp ];
+        
         [self checkVMStatus];
     }
     else
@@ -139,7 +144,8 @@
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"etcdclt, fleetctl, k8s clients will be updated";
+    notification.title = @"etcdclt, fleetctl, k8s clients and";
+    notification.informativeText = @"fleet units will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
