@@ -6,7 +6,7 @@ After=setup-network-environment.service
 
 [Service]
 EnvironmentFile=/etc/network-environment
-ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kubelet'
+ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl 'https://api.github.com/repos/GoogleCloudPlatform/kubernetes/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )/bin/linux/amd64/kubelet'
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kubelet
 ExecStart=/opt/bin/kubelet \
 --address=0.0.0.0 \
@@ -14,6 +14,7 @@ ExecStart=/opt/bin/kubelet \
 --hostname_override=${ETH1_IPV4} \
 --etcd_servers=http://172.17.15.101:4001 \
 --logtostderr=true
+
 Restart=always
 RestartSec=10
 

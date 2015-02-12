@@ -35,6 +35,7 @@
 		01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855218A6C4E300BC630D /* MainMenu.xib */; };
 		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
+		01E55E101A8B8EE60080CED1 /* set_env.command in Resources */ = {isa = PBXBuildFile; fileRef = 01E55E0F1A8B8EE60080CED1 /* set_env.command */; };
 		01F0282C1A7C54C8008C37AA /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01F0282B1A7C54C8008C37AA /* os_shell.command */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		01E2855518A6C4E300BC630D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		01E55E0F1A8B8EE60080CED1 /* set_env.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = set_env.command; sourceTree = "<group>"; };
 		01F0282B1A7C54C8008C37AA /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 				01741B64190DB81400BB1F91 /* vagrant_up.command */,
 				011BBA3E1A2A94A100AAB35B /* vagrant_reload.command */,
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
+				01E55E0F1A8B8EE60080CED1 /* set_env.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
 			);
 			name = Scripts;
@@ -282,6 +285,7 @@
 				011BBA3B1A2A842A00AAB35B /* change_release_channel.command in Resources */,
 				01689B731A2D1A260099CB78 /* fleet in Resources */,
 				011BBA311A2A6E2500AAB35B /* coreos-wordmark-vert-color.png in Resources */,
+				01E55E101A8B8EE60080CED1 /* set_env.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,
@@ -404,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -424,6 +429,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

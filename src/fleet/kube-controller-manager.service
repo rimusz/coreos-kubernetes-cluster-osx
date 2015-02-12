@@ -3,11 +3,12 @@ Description=Kubernetes Controller Manager
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
-ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kube-controller-manager'
+ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl 'https://api.github.com/repos/GoogleCloudPlatform/kubernetes/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' “' | cut -d '"' -f 2 )/bin/linux/amd64/kube-controller-manager'
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-controller-manager
 ExecStart=/opt/bin/kube-controller-manager \
 --master=127.0.0.1:8080 \
 --logtostderr=true
+
 Restart=always
 RestartSec=10
 
