@@ -19,11 +19,11 @@
     # cd to App's Resources folder
     cd "$1"
 
-    # copy gsed to ~/coreos--k8s--cluster/bin
+    # copy gsed to ~/coreos-k8s-cluster/bin
     cp "$1"/gsed ~/coreos-k8s-cluster/bin
     chmod 755 ~/coreos-k8s-cluster/bin/gsed
 
-    # copy wget with https support to ~/coreos--k8s--cluster/bin
+    # copy wget with https support to ~/coreos-k8s-cluster/bin
     cp "$1"/wget ~/coreos-k8s-cluster/bin
     chmod 755 ~/coreos-k8s-cluster/bin/wget
 

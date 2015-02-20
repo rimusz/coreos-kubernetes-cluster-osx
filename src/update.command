@@ -14,11 +14,11 @@ read -p "$*"
 res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
 
 # copy gsed to ~/coreos-k8s-cluster/bin
-cp -f "$res_folder"/gsed ~/coreos-k8s-cluster/bin
+cp -f "${res_folder}"/gsed ~/coreos-k8s-cluster/bin
 chmod 755 ~/coreos-k8s-cluster/bin/gsed
 
 # copy wget with https support to ~/coreos-k8s-cluster/bin
-cp -f "$res_folder"/wget ~/coreos-k8s-cluster/bin
+cp -f "${res_folder}"/wget ~/coreos-k8s-cluster/bin
 chmod 755 ~/coreos-k8s-cluster/bin/wget
 
 #
