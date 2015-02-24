@@ -10,7 +10,7 @@
 ### getting files from github and setting them up
 echo ""
 echo "Downloading latest coreos-vagrant files from github to tmp folder: "
-git clone https://github.com/coreos/coreos-vagrant/ ~/coreos-k8s-cluster/tmp
+git clone https://github.com/coreos/coreos-vagrant.git ~/coreos-k8s-cluster/tmp
 echo "Done downloading from github !!!"
 echo ""
 
