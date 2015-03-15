@@ -16,7 +16,7 @@ coreos:
       command: start
       content: |
         [Unit]
-        After=network-online.target 
+        After=network-online.target
         Wants=network-online.target
         Description=flannel is an etcd backed overlay network for containers
         [Service]
@@ -49,7 +49,7 @@ coreos:
         After=network-online.target
         [Service]
         ExecStartPre=-/usr/bin/mkdir -p /opt/bin
-        ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/k8s/setup-network-environment 
+        ExecStartPre=/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/k8s/setup-network-environment
         ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment
         ExecStart=/opt/bin/setup-network-environment
         RemainAfterExit=yes
@@ -59,3 +59,16 @@ write_files:
     content: |
         [Service]
         Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'
+  - path: /etc/profile.d/etcdctl.sh
+    permissions: 0644
+    owner: core
+    content: |
+      # configure etcdctl to work with our etcd servers set above
+      export ETCDCTL_PEERS="http://172.17.15.101:4001"
+  - path: /etc/profile.d/fleetctl.sh
+    permissions: 0644
+    owner: core
+    content: |
+      # configure fleetctl to work with our etcd servers set above
+      export FLEETCTL_ENDPOINT=unix:///var/run/fleet.sock
+      export FLEETCTL_EXPERIMENTAL_API=true
