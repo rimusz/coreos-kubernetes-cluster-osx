@@ -43,7 +43,7 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 1) kubernetes master - export KUBERNETES_MASTER=http://172.17.15.101:8080
 2) etcd endpoint - export ETCDCTL_PEERS=http://172.17.15.101:4001
 3) fleetctl endpoint - export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
-4) Path to ~/coreos-osx-cluster/bin where etcdclt, fleetctl and kubernetes binaries are stored
+4) Path to ~/coreos-osx-cluster/bin where etcdctl, fleetctl and kubernetes binaries are stored
 ````
 
 * `Updates/Force CoreOS update` will be run `sudo update_engine_client -update` on each CoreOS VM.
