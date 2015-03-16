@@ -27,6 +27,7 @@
 		01AD94B81A277708009A400B /* gsed in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94B71A277708009A400B /* gsed */; };
 		01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* force_coreos_update.command */; };
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
+		01D415791AB6EDD000738471 /* update_vbox.command in Resources */ = {isa = PBXBuildFile; fileRef = 01D415781AB6EDD000738471 /* update_vbox.command */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
 		01E2854818A6C4E300BC630D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 01E2854618A6C4E300BC630D /* InfoPlist.strings */; };
 		01E2854A18A6C4E300BC630D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 01E2854918A6C4E300BC630D /* main.m */; };
@@ -61,6 +62,7 @@
 		01AD94B71A277708009A400B /* gsed */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gsed; sourceTree = SOURCE_ROOT; };
 		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
+		01D415781AB6EDD000738471 /* update_vbox.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_vbox.command; sourceTree = "<group>"; };
 		01E2853A18A6C4E300BC630D /* CoreOS k8s Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS k8s Cluster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		01E2853D18A6C4E300BC630D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		01E2854018A6C4E300BC630D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -185,6 +187,7 @@
 				011BBA3E1A2A94A100AAB35B /* vagrant_reload.command */,
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
 				01E55E0F1A8B8EE60080CED1 /* set_env.command */,
+				01D415781AB6EDD000738471 /* update_vbox.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
 			);
 			name = Scripts;
@@ -289,6 +292,7 @@
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,
+				01D415791AB6EDD000738471 /* update_vbox.command in Resources */,
 				011BBA351A2A7B0600AAB35B /* vagrant_node2.command in Resources */,
 				01F0282C1A7C54C8008C37AA /* os_shell.command in Resources */,
 			);
