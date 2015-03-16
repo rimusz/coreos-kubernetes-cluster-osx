@@ -36,8 +36,8 @@
     cp "$1"/k8s/kubectl
     chmod 755 ~/coreos-k8s-cluster/bin/kubectl
     # linux binaries
-    cp "$1"/k8s/master.tgz ~/coreos-k8s-cluster/tmp
-    cp "$1"/k8s/nodes.tgz ~/coreos-k8s-cluster/tmp
+    cp "$1"/k8s/master.tgz ~/coreos-k8s-cluster/control
+    cp "$1"/k8s/nodes.tgz ~/coreos-k8s-cluster/workers
 
     # copy fleet units
     cp -R "$1"/fleet/ ~/coreos-k8s-cluster/fleet

@@ -23,21 +23,10 @@ chmod 755 ~/coreos-k8s-cluster/bin/wget
 
 #
 cd ~/coreos-k8s-cluster/control
-vagrant box update
 vagrant up
 #
 cd ~/coreos-k8s-cluster/workers
-vagrant box update
 vagrant up
-
-# download latest version of kubectl
-cd ~/coreos-k8s-cluster/tmp
-K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
-echo "Downloading kubectl $K8S_VERSION for OS X"
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/bin https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
-chmod 755 ~/coreos-k8s-cluster/bin/kubectl
-echo "kubectl was copied to ~/coreos-k8s-cluster/bin"
-echo " "
 
 # download latest versions of etcdctl and fleetctl
 cd ~/coreos-k8s-cluster/control

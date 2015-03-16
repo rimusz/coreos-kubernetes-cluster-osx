@@ -113,27 +113,30 @@ read -p "$*"
 echo "Setting up Vagrant VMs for CoreOS Kubernetes Cluster on OS X"
 cd ~/coreos-k8s-cluster/control
 vagrant box update
-vagrant up
+vagrant up --provider virtualbox
 #
 cd ~/coreos-k8s-cluster/workers
-vagrant up
+vagrant up --provider virtualbox
 
 # Add vagrant ssh key to ssh-agent
 ssh-add ~/.vagrant.d/insecure_private_key
 
 # install k8s files on master
-cd ~/coreos-k8s-cluster/tmp
-vagrant scp <some_local_file_or_dir> <somewhere_on_the_vm> [vm_name]
-vagrant ssh k8smaster-01 -c "sudo update_engine_client -update"
+cd ~/coreos-k8s-cluster/control
+vagrant scp master.tgz /home/core/
+vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
 echo "Done with k8smaster-01 "
 echo " "
 
 # install k8s files on nodes
-vagrant ssh k8snode-01 -c "sudo update_engine_client -update"
+cd ~/coreos-k8s-cluster/workers
+vagrant scp nodes.tgz /home/core/
+#
+vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
 echo "Done with k8snode-01 "
 echo " "
-vagrant ssh k8snode-02 -c "sudo update_engine_client -update"
-
+vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
+echo "Done with k8snode-02 "
 
 # download etcdctl and fleetctl
 #
@@ -172,11 +175,19 @@ echo "Finished installing fleet units"
 ~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "
 
+sleep 5
+
+# set kubernetes master
+export KUBERNETES_MASTER=http://172.17.15.101:8080
+echo "k8s nodes list:"
+kubectl get nodes
+echo " "
+
 #
 echo " "
 echo "Installation has finished, CoreOS VMs are up and running !!!"
 echo "Enjoy CoreOS-Vagrant Kubernetes Cluster on your Mac !!!"
 echo " "
-echo "Run from menu 'Up' to power up VM and a terninal window preset with fleetctl, etcdctl and k8s master IP will be opened !!!"
+echo "Run from menu 'OS Shell' to open a terninal window with fleetctl, etcdctl and kubectl preset to master's IP!!!"
 echo " "
 pause 'Press [Enter] key to continue...'

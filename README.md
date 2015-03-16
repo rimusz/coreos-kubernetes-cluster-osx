@@ -28,8 +28,9 @@ The install will do the following:
 * It will clone latest coreos-vagrant from git
 * user-data files will have fleet, etcd and flannel set
 * master machine will be set with IP `172.17.15.101` and two cluster nodes with IPs: `172.17.15.102 and 172.17.15.103`
-* It will download latest vagrant VBox and run vagrant up to initialise VM
-* It will download and install `fleetctl, etcdctl, kubectl and kubecfg` to `~/coreos-k8s-cluster/bin/`
+* It will download latest vagrant VBox and run `vagrant up` to initialise VM
+* When you first time install or do 'Up' after destroying k8s cluster, k8s binary files (with the version which was available when the App was built) get copied to CoreOS VMs, this speeds up k8s cluster setup. To update K8s cluster just run from menu 'Updates' - Update Kubernetes cluster and OS X kubectl.
+* It will install `fleetctl, etcdctl and kubectl` to `~/coreos-k8s-cluster/bin/`
 * Kubernetes services will be installed with fleet units which are placed in `~/coreos-k8s-cluster/fleet`, this allows very easy updates to fleet units if needed.
 
 How it works
@@ -51,33 +52,42 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 * `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
 
-IMPORTANT : The fleet units installed on the master host have to download and install all of the Kubernetes server components (to `/opt/bin`).  This means it may take several minutes or more until these Kubernetes systemd services are fully operational and available to commands like `kubectl`. You can check if they are running properly or still downloading by running the following commands on the master host.
+
+Example ouput of succesfull CoreOS + Kubernetes cluster install:
 
 ````
-# TEST ALL SERVICE STATUS SHOULD LOOK LIKE
+$ 
+etcd cluster:
+/registry
+/coreos.com
 
-core@k8smaster-01 /opt/bin $ fleetctl list-units
+fleetctl list-machines:
+MACHINE		IP		METADATA
+9b88a46c...	172.17.15.103	role=node
+d0c68677...	172.17.15.102	role=node
+f93b555e...	172.17.15.101	role=control
+
+fleetctl list-units:
 UNIT				MACHINE				ACTIVE	SUB
-fleet-ui.service		f6604863.../172.17.15.101	active	running
-kube-apiserver.service		f6604863.../172.17.15.101	active	running
-kube-controller-manager.service	f6604863.../172.17.15.101	active	running
-kube-kubelet.service		1d77be34.../172.17.15.102	active	running
-kube-kubelet.service		ecba135d.../172.17.15.103	active	running
-kube-proxy.service		1d77be34.../172.17.15.102	active	running
-kube-proxy.service		ecba135d.../172.17.15.103	active	running
-kube-register.service		f6604863.../172.17.15.101	active	running
-kube-scheduler.service		f6604863.../172.17.15.101	active	running
+fleet-ui.service		f93b555e.../172.17.15.101	active	running
+kube-apiserver.service		f93b555e.../172.17.15.101	active	running
+kube-controller-manager.service	f93b555e.../172.17.15.101	active	running
+kube-kubelet.service		9b88a46c.../172.17.15.103	active	running
+kube-kubelet.service		d0c68677.../172.17.15.102	active	running
+kube-proxy.service		9b88a46c.../172.17.15.103	active	running
+kube-proxy.service		d0c68677.../172.17.15.102	active	running
+kube-register.service		f93b555e.../172.17.15.101	active	running
+kube-scheduler.service		f93b555e.../172.17.15.101	active	running
+
+k8s nodes list:
+NAME                LABELS              STATUS
+172.17.15.102       <none>              Ready
+172.17.15.103       <none>              Ready
+
 ````
 
-To look at the details of any one of these try:
 
-````
-systemctl status -l SERVICENAME.service
 
-e.g.
-
-systemctl status -l kube-apiserver.service
-````
 
 Usage
 ------------

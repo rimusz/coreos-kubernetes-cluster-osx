@@ -26,8 +26,8 @@ echo " "
 
 # set kubernetes master
 export KUBERNETES_MASTER=http://172.17.15.101:8080
-echo "k8s minions list:"
-kubectl get minions
+echo "k8s nodes list:"
+kubectl get nodes
 echo " "
 
 # open bash shell
