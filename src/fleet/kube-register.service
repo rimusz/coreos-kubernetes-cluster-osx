@@ -10,6 +10,7 @@ ExecStart=/opt/bin/kube-register \
 --fleet-endpoint=unix:///var/run/fleet.sock \
 --api-endpoint=http://127.0.0.1:8080
 
+TimeoutStartSec=900s
 Restart=always
 RestartSec=10
 
