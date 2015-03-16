@@ -30,21 +30,16 @@ cd ~/coreos-k8s-cluster/workers
 vagrant box update
 vagrant up
 
-# download kubernetes binaries
+# download latest version of kubectl
 cd ~/coreos-k8s-cluster/tmp
 K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
-echo "Downloading kubernetes $K8S_VERSION for OS X"
-~/coreos-k8s-cluster/bin/wget -c https://github.com/GoogleCloudPlatform/kubernetes/releases/download/$K8S_VERSION/kubernetes.tar.gz
-tar -xzvf kubernetes.tar.gz kubernetes/platforms/darwin/amd64
-cp -f ./kubernetes/platforms/darwin/amd64/kubectl ~/coreos-k8s-cluster/bin
-cp -f ./kubernetes/platforms/darwin/amd64/kubecfg ~/coreos-k8s-cluster/bin
-# clean up tmp folder
-rm -fr ~/coreos-k8s-cluster/tmp/*
-rm -fr ~/coreos-k8s-cluster/tmp/.*
-echo "kubecfg and kubectl were copied to ~/coreos-k8s-cluster/bin"
+echo "Downloading kubectl $K8S_VERSION for OS X"
+~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/bin https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
+chmod 755 ~/coreos-k8s-cluster/bin/kubectl
+echo "kubectl was copied to ~/coreos-k8s-cluster/bin"
 echo " "
 
-# download latest versions of etcdctl, fleetctl and kubectl
+# download latest versions of etcdctl and fleetctl
 cd ~/coreos-k8s-cluster/control
 LATEST_RELEASE=$(vagrant ssh k8smaster-01 -c "etcdctl --version" | cut -d " " -f 3- | tr -d '\r' )
 cd ~/coreos-k8s-cluster/bin

@@ -26,6 +26,8 @@
 		01741B67190DB82100BB1F91 /* update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01741B66190DB82100BB1F91 /* update.command */; };
 		01AD94B81A277708009A400B /* gsed in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94B71A277708009A400B /* gsed */; };
 		01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */ = {isa = PBXBuildFile; fileRef = 01AD94BE1A278C94009A400B /* force_coreos_update.command */; };
+		01BB60D11AB74A680069BF30 /* update_k8s.command in Resources */ = {isa = PBXBuildFile; fileRef = 01BB60D01AB74A680069BF30 /* update_k8s.command */; };
+		01BB60D31AB74AE60069BF30 /* k8s in Resources */ = {isa = PBXBuildFile; fileRef = 01BB60D21AB74AE60069BF30 /* k8s */; };
 		01D3685918E5C184006510B5 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 01D3685818E5C184006510B5 /* icon.icns */; };
 		01D415791AB6EDD000738471 /* update_vbox.command in Resources */ = {isa = PBXBuildFile; fileRef = 01D415781AB6EDD000738471 /* update_vbox.command */; };
 		01E2853E18A6C4E300BC630D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01E2853D18A6C4E300BC630D /* Cocoa.framework */; };
@@ -61,6 +63,8 @@
 		01741B66190DB82100BB1F91 /* update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update.command; sourceTree = SOURCE_ROOT; };
 		01AD94B71A277708009A400B /* gsed */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = gsed; sourceTree = SOURCE_ROOT; };
 		01AD94BE1A278C94009A400B /* force_coreos_update.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = force_coreos_update.command; sourceTree = "<group>"; };
+		01BB60D01AB74A680069BF30 /* update_k8s.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_k8s.command; sourceTree = "<group>"; };
+		01BB60D21AB74AE60069BF30 /* k8s */ = {isa = PBXFileReference; lastKnownFileType = folder; path = k8s; sourceTree = SOURCE_ROOT; };
 		01D3685818E5C184006510B5 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		01D415781AB6EDD000738471 /* update_vbox.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = update_vbox.command; sourceTree = "<group>"; };
 		01E2853A18A6C4E300BC630D /* CoreOS k8s Cluster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreOS k8s Cluster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +102,7 @@
 		014E6F8B18B63AF700E697C0 /* Installation Files */ = {
 			isa = PBXGroup;
 			children = (
+				01BB60D21AB74AE60069BF30 /* k8s */,
 				01689B761A2D1CA80099CB78 /* Vagrantfiles */,
 				01689B721A2D1A260099CB78 /* fleet */,
 				01AD94B71A277708009A400B /* gsed */,
@@ -188,6 +193,7 @@
 				01AD94BE1A278C94009A400B /* force_coreos_update.command */,
 				01E55E0F1A8B8EE60080CED1 /* set_env.command */,
 				01D415781AB6EDD000738471 /* update_vbox.command */,
+				01BB60D01AB74A680069BF30 /* update_k8s.command */,
 				01741B66190DB82100BB1F91 /* update.command */,
 			);
 			name = Scripts;
@@ -278,6 +284,7 @@
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
 				011146561A7D9AF7008E0FB2 /* wget in Resources */,
 				011BBA391A2A829F00AAB35B /* vagrant_destroy.command in Resources */,
+				01BB60D11AB74A680069BF30 /* update_k8s.command in Resources */,
 				01E2855618A6C4E300BC630D /* Images.xcassets in Resources */,
 				011BBA341A2A7B0600AAB35B /* vagrant_node1.command in Resources */,
 				011BBA3F1A2A94A100AAB35B /* vagrant_reload.command in Resources */,
@@ -287,6 +294,7 @@
 				01741B57190DB7B800BB1F91 /* coreos-vagrant-install.command in Resources */,
 				011BBA3B1A2A842A00AAB35B /* change_release_channel.command in Resources */,
 				01689B731A2D1A260099CB78 /* fleet in Resources */,
+				01BB60D31AB74AE60069BF30 /* k8s in Resources */,
 				011BBA311A2A6E2500AAB35B /* coreos-wordmark-vert-color.png in Resources */,
 				01E55E101A8B8EE60080CED1 /* set_env.command in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,

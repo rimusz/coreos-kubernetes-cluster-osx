@@ -32,8 +32,18 @@
     cp "$1"/Vagrantfiles/user-data.control ~/coreos-k8s-cluster/control/user-data
     cp "$1"/Vagrantfiles/user-data.node ~/coreos-k8s-cluster/workers/user-data
 
+    # copy k8s files
+    cp "$1"/k8s/kubectl
+    chmod 755 ~/coreos-k8s-cluster/bin/kubectl
+    # linux binaries
+    cp "$1"/k8s/master.tgz ~/coreos-k8s-cluster/tmp
+    cp "$1"/k8s/nodes.tgz ~/coreos-k8s-cluster/tmp
+
     # copy fleet units
     cp -R "$1"/fleet/ ~/coreos-k8s-cluster/fleet
+
+    # install vagrant scp plugin
+    vagrant plugin install vagrant-scp
 
     # initial init
     open -a iTerm.app "$1"/first-init.command

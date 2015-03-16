@@ -121,18 +121,19 @@ vagrant up
 # Add vagrant ssh key to ssh-agent
 ssh-add ~/.vagrant.d/insecure_private_key
 
-# download kubernetes binaries
+# install k8s files on master
 cd ~/coreos-k8s-cluster/tmp
-K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
-echo "Downloading kubernetes $K8S_VERSION for OS X"
-~/coreos-k8s-cluster/bin/wget -c https://github.com/GoogleCloudPlatform/kubernetes/releases/download/$K8S_VERSION/kubernetes.tar.gz
-tar -xzvf kubernetes.tar.gz kubernetes/platforms/darwin/amd64
-cp -f ./kubernetes/platforms/darwin/amd64/kubectl ~/coreos-k8s-cluster/bin
-cp -f ./kubernetes/platforms/darwin/amd64/kubecfg ~/coreos-k8s-cluster/bin
+vagrant scp <some_local_file_or_dir> <somewhere_on_the_vm> [vm_name]
+vagrant ssh k8smaster-01 -c "sudo update_engine_client -update"
+echo "Done with k8smaster-01 "
+echo " "
 
-# clean up tmp folder
-rm -fr ~/coreos-k8s-cluster/tmp/*
-rm -fr ~/coreos-k8s-cluster/tmp/.*
+# install k8s files on nodes
+vagrant ssh k8snode-01 -c "sudo update_engine_client -update"
+echo "Done with k8snode-01 "
+echo " "
+vagrant ssh k8snode-02 -c "sudo update_engine_client -update"
+
 
 # download etcdctl and fleetctl
 #
