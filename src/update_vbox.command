@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#  update.command
+#  update_vbox.command
 #  CoreOS Kubernetes Cluster for OS X
 #
 #  Created by Rimantas on 01/04/2014.

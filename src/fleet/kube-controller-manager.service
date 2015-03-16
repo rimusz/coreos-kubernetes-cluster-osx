@@ -3,13 +3,10 @@ Description=Kubernetes Controller Manager
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
-ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleapis.com/kubernetes-release/release/$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")/bin/linux/amd64/kube-controller-manager'
-ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-controller-manager
 ExecStart=/opt/bin/kube-controller-manager \
 --master=127.0.0.1:8080 \
 --logtostderr=true
 
-TimeoutStartSec=900s
 Restart=always
 RestartSec=10
 

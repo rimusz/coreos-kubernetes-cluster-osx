@@ -141,10 +141,23 @@
 
 
 // Updates menu
+- (IBAction)update_k8s:(id)sender {
+    // send a notification on to the screen
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Kubernetes cluster and";
+    notification.informativeText = @"OS X kubectl will be updated";
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    
+    NSString *appName = [[NSString alloc] init];
+    NSString *arguments = [[NSString alloc] init];
+    [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update_k8s.command"]];
+    //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
+}
+
 - (IBAction)updates:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"etcdclt, fleetctl, k8s clients and";
+    notification.title = @"OS X etcdclt, fleetctl and";
     notification.informativeText = @"fleet units will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -153,7 +166,6 @@
     [self runApp:appName = @"iTerm" arguments:arguments = [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]];
     //     NSLog(@"Apps arguments: '%@'", [_resoucesPathFromApp stringByAppendingPathComponent:@"update.command"]);
 }
-
 
 - (IBAction)updateVbox:(id)sender {
     // send a notification on to the screen
