@@ -42,8 +42,5 @@
     # copy fleet units
     cp -R "$1"/fleet/ ~/coreos-k8s-cluster/fleet
 
-    # install vagrant scp plugin
-    vagrant plugin install vagrant-scp
-
     # initial init
     open -a iTerm.app "$1"/first-init.command
