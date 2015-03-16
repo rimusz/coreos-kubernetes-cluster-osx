@@ -727,7 +727,7 @@
                                     <action selector="updates:" target="494" id="3Va-Du-QFm"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Check updates for VirtualBox" id="GeE-pc-UXF">
+                            <menuItem title="Check updates for CoreOS vbox" id="GeE-pc-UXF">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="updateVbox:" target="494" id="boN-4h-9Wn"/>
