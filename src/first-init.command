@@ -6,6 +6,9 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# install vagrant scp plugin
+vagrant plugin install vagrant-scp
+
 
 ### getting files from github and setting them up
 echo ""
