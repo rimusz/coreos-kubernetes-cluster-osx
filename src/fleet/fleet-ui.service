@@ -13,6 +13,7 @@ ExecStart=/usr/bin/docker run --rm --name fleet_ui --memory="128m" --cpu-shares=
 ExecStop=/usr/bin/docker stop fleet_ui
 ExecStopPost=-/usr/bin/docker rm fleet_ui
 
+TimeoutStartSec=900s
 Restart=always
 RestartSec=10s
 

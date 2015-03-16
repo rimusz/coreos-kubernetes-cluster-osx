@@ -7,6 +7,7 @@ ExecStartPre=/bin/bash -c '/usr/bin/wget -N -P /opt/bin https://storage.googleap
 ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-scheduler
 ExecStart=/opt/bin/kube-scheduler --master=127.0.0.1:8080
 
+TimeoutStartSec=900s
 Restart=always
 RestartSec=10
 

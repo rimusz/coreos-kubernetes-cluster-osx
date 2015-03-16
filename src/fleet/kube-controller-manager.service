@@ -9,6 +9,7 @@ ExecStart=/opt/bin/kube-controller-manager \
 --master=127.0.0.1:8080 \
 --logtostderr=true
 
+TimeoutStartSec=900s
 Restart=always
 RestartSec=10
 
