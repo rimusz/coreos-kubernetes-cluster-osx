@@ -44,7 +44,7 @@
 <h2>
 <a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
 
-<p>Head over to the <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/releases">Releases Page</a> to grab the latest ZIP file.</p>
+<p>Head over to the <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/releases">Releases Page</a> to grab the latest release.</p>
 
 <h2>
 <a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install</h2>
@@ -56,13 +56,14 @@
 <a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox for Mac OS X hosts</a>, <a href="http://www.vagrantup.com/downloads.html">Vagrant for Mac OS X</a> and <a href="http://www.iterm2.com/#/section/downloads">iTerm 2</a>
 </li>
 <li>Unzip downloaded file and copy e.g. the App to Desktop.</li>
-<li>Start the <code>CoreOS k8s Cluster</code> App and from menu <code>Setup</code> and choose: <code>Initial setup of CoreOS-Vagrant k8s Cluster</code> </li>
+<li>Start the <code>CoreOS k8s Cluster</code> App and from menu <code>Setup</code> and choose: <code>Initial setup of CoreOS-Vagrant k8s Cluster</code>
+</li>
 </ul>
 
 <p>The install will do the following:</p>
 
 <ul>
-<li>All dependent files/folders will be put under <code>coreos-k8s-cluster</code> folder in the user's 
+<li>All dependent files/folders will be put under <code>coreos-k8s-cluster</code> folder in the user's
 home folder</li>
 <li>It will clone latest coreos-vagrant from git</li>
 <li>user-data files will have fleet, etcd and flannel set</li>
@@ -71,7 +72,7 @@ home folder</li>
 <li>It will download latest vagrant VBox and run vagrant up to initialise VM</li>
 <li>It will download and install <code>fleetctl, etcdctl, kubectl and kubecfg</code> to <code>~/coreos-k8s-cluster/bin/</code>
 </li>
-<li>Kubernetes services will be installed with fleet units which are placed in <code>~/coreos-k8s-cluster/fleet</code>, that allows if necessary very easely to update fleet units.</li>
+<li>Kubernetes services will be installed with fleet units which are placed in <code>~/coreos-k8s-cluster/fleet</code>, this allows very easy updates to fleet units if needed.</li>
 </ul>
 
 <h2>
@@ -87,19 +88,45 @@ home folder</li>
 <pre><code>1) kubernetes master - export KUBERNETES_MASTER=http://172.17.15.101:8080
 2) etcd endpoint - export ETCDCTL_PEERS=http://172.17.15.101:4001
 3) fleetctl endpoint - export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
-4) Path to ~/coreos-osx-cluster/bin where etcdclt, fleetctl and kubernetes binaries are stored
+4) Path to ~/coreos-osx-cluster/bin where etcdctl, fleetctl and kubernetes binaries are stored
 </code></pre>
 
 <ul>
 <li>
 <code>Updates/Force CoreOS update</code> will be run <code>sudo update_engine_client -update</code> on each CoreOS VM.</li>
 <li>
-<code>Updates/Check for updates</code> will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run. </li>
+<code>Updates/Check for updates</code> will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run.</li>
 <li>
 <code>SSH to k8smaster01 and k8snode-01/02</code> menu options will open VM shells</li>
 <li>
 <a href="http://fleetui.com">Fleet-UI</a> will show running fleet units and etc</li>
 </ul>
+
+<p>IMPORTANT : The fleet units installed on the master host have to download and install all of the Kubernetes server components (to <code>/opt/bin</code>).  This means it may take several minutes or more until these Kubernetes systemd services are fully operational and available to commands like <code>kubectl</code>. You can check if they are running properly or still downloading by running the following commands on the master host.</p>
+
+<pre><code># TEST ALL SERVICE STATUS SHOULD LOOK LIKE
+
+core@k8smaster-01 /opt/bin $ fleetctl list-units
+UNIT                MACHINE             ACTIVE  SUB
+fleet-ui.service        f6604863.../172.17.15.101   active  running
+kube-apiserver.service      f6604863.../172.17.15.101   active  running
+kube-controller-manager.service f6604863.../172.17.15.101   active  running
+kube-kubelet.service        1d77be34.../172.17.15.102   active  running
+kube-kubelet.service        ecba135d.../172.17.15.103   active  running
+kube-proxy.service      1d77be34.../172.17.15.102   active  running
+kube-proxy.service      ecba135d.../172.17.15.103   active  running
+kube-register.service       f6604863.../172.17.15.101   active  running
+kube-scheduler.service      f6604863.../172.17.15.101   active  running
+</code></pre>
+
+<p>To look at the details of any one of these try:</p>
+
+<pre><code>systemctl status -l SERVICENAME.service
+
+e.g.
+
+systemctl status -l kube-apiserver.service
+</code></pre>
 
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
@@ -122,7 +149,7 @@ home folder</li>
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p class="copyright">Coreos-osx-gui-kubernetes-cluster maintained by <a href="https://github.com/rimusz">rimusz</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
