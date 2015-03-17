@@ -33,7 +33,7 @@
     cp "$1"/Vagrantfiles/user-data.node ~/coreos-k8s-cluster/workers/user-data
 
     # copy k8s files
-    cp "$1"/k8s/kubectl
+    cp "$1"/k8s/kubectl ~/coreos-k8s-cluster/bin
     chmod 755 ~/coreos-k8s-cluster/bin/kubectl
     # linux binaries
     cp "$1"/k8s/master.tgz ~/coreos-k8s-cluster/control
