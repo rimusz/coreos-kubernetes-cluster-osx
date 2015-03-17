@@ -118,6 +118,22 @@ echo "Finished updating fleet units"
 ~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "
 
+# set kubernetes master
+export KUBERNETES_MASTER=http://172.17.15.101:8080
+echo Waiting for Kubernetes cluster to be ready. This can take a few minutes...
+spin='-\|/'
+i=1
+until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do printf "\b${spin:i++%${#sp}:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#
+echo " "
+echo "k8s nodes list:"
+~/coreos-k8s-cluster/bin/kubectl get nodes
+echo " "
+
 
 #
 echo "Update has finished !!!"

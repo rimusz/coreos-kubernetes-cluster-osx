@@ -6,9 +6,11 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+echo " "
+echo Installing Kubernetes cluster...
+echo " "
 # install vagrant scp plugin
 vagrant plugin install vagrant-scp
-
 
 ### getting files from github and setting them up
 echo ""
@@ -47,12 +49,10 @@ LOOP=1
 while [ $LOOP -gt 0 ]
 do
     VALID_MAIN=0
-    echo " "
     echo "Set CoreOS Release Channel:"
     echo " 1)  Alpha "
     echo " 2)  Beta "
     echo " 3)  Stable "
-    echo " "
     echo "Select an option:"
 
     read RESPONSE
@@ -113,9 +113,9 @@ read -p "$*"
 }
 
 # first up to initialise VMs
+echo " "
 echo "Setting up Vagrant VMs for CoreOS Kubernetes Cluster on OS X"
 cd ~/coreos-k8s-cluster/control
-vagrant box update
 vagrant up --provider virtualbox
 #
 cd ~/coreos-k8s-cluster/workers
@@ -124,22 +124,23 @@ vagrant up --provider virtualbox
 # Add vagrant ssh key to ssh-agent
 ssh-add ~/.vagrant.d/insecure_private_key
 
-# install k8s files on master
+echo Installing k8s files to master
 cd ~/coreos-k8s-cluster/control
 vagrant scp master.tgz /home/core/
-vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
+vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8smaster-01 "
 echo " "
 
-# install k8s files on nodes
+echo Installing k8s files to nodes
 cd ~/coreos-k8s-cluster/workers
 vagrant scp nodes.tgz /home/core/
 #
-vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
+vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8snode-01 "
 echo " "
-vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin "
+vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8snode-02 "
+echo " "
 
 # download etcdctl and fleetctl
 #
@@ -150,11 +151,8 @@ echo "Downloading etcdctl $LATEST_RELEASE for OS X"
 curl -L -o etcd.zip "https://github.com/coreos/etcd/releases/download/v$LATEST_RELEASE/etcd-v$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "etcd.zip" "etcd-v$LATEST_RELEASE-darwin-amd64/etcdctl"
 rm -f etcd.zip
-# set etcd endpoint
-export ETCDCTL_PEERS=http://172.17.15.101:4001
-echo "etcd cluster:"
-~/coreos-k8s-cluster/bin/etcdctl ls /
 echo " "
+
 #
 cd ~/coreos-k8s-cluster/control
 LATEST_RELEASE=$(vagrant ssh k8smaster-01 -c 'fleetctl version' | cut -d " " -f 3- | tr -d '\r')
@@ -163,6 +161,14 @@ echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"
 unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
 rm -f fleet.zip
+echo " "
+
+# set etcd endpoint
+export ETCDCTL_PEERS=http://172.17.15.101:4001
+echo "etcd cluster:"
+~/coreos-k8s-cluster/bin/etcdctl ls /
+echo " "
+
 # set fleetctl tunnel
 export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
@@ -178,12 +184,20 @@ echo "Finished installing fleet units"
 ~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "
 
-sleep 5
-
 # set kubernetes master
 export KUBERNETES_MASTER=http://172.17.15.101:8080
+echo Waiting for Kubernetes cluster to be ready. This can take a few minutes...
+spin='-\|/'
+i=1
+until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do printf "\b${spin:i++%${#sp}:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#
+echo " "
 echo "k8s nodes list:"
-kubectl get nodes
+~/coreos-k8s-cluster/bin/kubectl get nodes
 echo " "
 
 #

@@ -73,16 +73,31 @@ export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 cd ~/coreos-k8s-cluster/fleet
 ~/coreos-k8s-cluster/bin/fleetctl stop *.service
-sleep 10
+sleep 5
 ~/coreos-k8s-cluster/bin/fleetctl start *.service
 #
-sleep 10
+sleep 8
 echo " "
-cd ~/coreos-k8s-cluster/fleet
-fleetctl start *.service
 echo "fleetctl list-units:"
-fleetctl list-units
+~/coreos-k8s-cluster/bin/fleetctl list-units
 echo " "
+
+# set kubernetes master
+export KUBERNETES_MASTER=http://172.17.15.101:8080
+echo Waiting for Kubernetes cluster to be ready. This can take a few minutes...
+spin='-\|/'
+i=1
+until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do printf "\b${spin:i++%${#sp}:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+#
+echo " "
+echo "k8s nodes list:"
+~/coreos-k8s-cluster/bin/kubectl get nodes
+echo " "
+
 
 echo "k8s update has finished !!!"
 pause 'Press [Enter] key to continue...'
