@@ -18,7 +18,7 @@ How to install
 
 Required software:
 * [VirtualBox](https://www.virtualbox.org/wiki/Downloads), [Vagrant](http://www.vagrantup.com/downloads.html) and [iTerm 2](http://www.iterm2.com/#/section/downloads)
-* Unzip downloaded file and copy e.g. the App to Desktop.
+* Open downloaded dmg file and drag the App e.g. to your Desktop.
 * Start the `CoreOS k8s Cluster` App and from menu `Setup` and choose: `Initial setup of CoreOS-Vagrant k8s Cluster`
 
 The install will do the following:
