@@ -13,9 +13,20 @@ read -p "$*"
 #
 cd ~/coreos-k8s-cluster/tmp
 
+# get latest k8s version
+function get_latest_version_number {
+local -r latest_url="https://storage.googleapis.com/kubernetes-release/release/latest.txt"
+if [[ $(which wget) ]]; then
+wget -qO- ${latest_url}
+elif [[ $(which curl) ]]; then
+curl -Ss ${latest_url}
+fi
+}
+
+K8S_VERSION=$(get_latest_version_number)
+
 # download latest version of kubectl for OS X
 cd ~/coreos-k8s-cluster/tmp
-K8S_VERSION=$(curl --insecure -sS https://get.k8s.io | grep release= | cut -f2 -d"=")
 echo "Downloading kubectl $K8S_VERSION for OS X"
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/bin https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
 chmod 755 ~/coreos-k8s-cluster/bin/kubectl
