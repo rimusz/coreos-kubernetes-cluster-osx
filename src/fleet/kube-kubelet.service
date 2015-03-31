@@ -10,7 +10,8 @@ ExecStart=/opt/bin/kubelet \
 --address=0.0.0.0 \
 --port=10250 \
 --hostname_override=${ETH1_IPV4} \
---etcd_servers=http://172.17.15.101:4001 \
+--api_servers=http://172.17.15.101:8080 \
+--allow_privileged=true \
 --logtostderr=true
 
 Restart=always
