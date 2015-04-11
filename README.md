@@ -51,6 +51,7 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 * `Updates/Check for updates` will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run.
 * `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
+* [Kubernetes-UI](https://github.com/kubernetes-ui) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
 
 
 Example ouput of succesfull CoreOS + Kubernetes cluster install:
@@ -78,6 +79,7 @@ kube-proxy.service		9b88a46c.../172.17.15.103	active	running
 kube-proxy.service		d0c68677.../172.17.15.102	active	running
 kube-register.service		f93b555e.../172.17.15.101	active	running
 kube-scheduler.service		f93b555e.../172.17.15.101	active	running
+kubernetes-ui.service		f01c50e9.../172.17.15.101	active	running
 
 k8s nodes list:
 NAME                LABELS              STATUS

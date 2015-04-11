@@ -305,6 +305,11 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:3000"]];
 }
 
+
+- (IBAction)KubernetesUI:(id)sender {
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:8001/#/dashboard/groups/type/selector/"]];
+}
+
 - (void)runScript:(NSString*)scriptName arguments:(NSString*)arguments
 {
     NSTask *task = [[NSTask alloc] init];
