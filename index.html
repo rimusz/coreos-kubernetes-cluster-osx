@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Coreos-osx-gui-kubernetes-cluster : CoreOS-Vagrant Kubernetes GUI for OS X">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Coreos-osx-gui-kubernetes-cluster</title>
+    <meta charset="UTF-8">
+    <title>Coreos-osx-gui-kubernetes-cluster by rimusz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
-
   <body>
+    <section class="page-header">
+      <h1 class="project-name">Coreos-osx-gui-kubernetes-cluster</h1>
+      <h2 class="project-tagline">CoreOS-Vagrant Kubernetes GUI for OS X</h2>
+      <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster" class="btn">View on GitHub</a>
+      <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster">View on GitHub</a>
-
-          <h1 id="project_title">Coreos-osx-gui-kubernetes-cluster</h1>
-          <h2 id="project_tagline">CoreOS-Vagrant Kubernetes GUI for OS X</h2>
-
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
+    <section class="main-content">
+      <h1>
 <a id="coreos-vagrant-kubernetes-cluster-gui-for-os-x" class="anchor" href="#coreos-vagrant-kubernetes-cluster-gui-for-os-x" aria-hidden="true"><span class="octicon octicon-link"></span></a>CoreOS-Vagrant Kubernetes Cluster GUI for OS X</h1>
 
 <p><code>CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X</code> is a Mac Status bar App which works like a wrapper around <a href="https://github.com/coreos/coreos-vagrant">coreos-vagrant</a> command line tool and bootstraps Kubernetes cluster with one master and two minions machines.</p>
@@ -101,6 +89,8 @@ home folder</li>
 <code>SSH to k8smaster01 and k8snode-01/02</code> menu options will open VM shells</li>
 <li>
 <a href="http://fleetui.com">Fleet-UI</a> will show running fleet units and etc</li>
+<li>
+<a href="https://github.com/kubernetes-ui">Kubernetes-UI</a> will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.</li>
 </ul>
 
 <p>Example ouput of succesfull CoreOS + Kubernetes cluster install:</p>
@@ -127,6 +117,7 @@ kube-proxy.service      9b88a46c.../172.17.15.103   active  running
 kube-proxy.service      d0c68677.../172.17.15.102   active  running
 kube-register.service       f93b555e.../172.17.15.101   active  running
 kube-scheduler.service      f93b555e.../172.17.15.101   active  running
+kubernetes-ui.service       f01c50e9.../172.17.15.101   active  running
 
 k8s nodes list:
 NAME                LABELS              STATUS
@@ -149,18 +140,16 @@ NAME                LABELS              STATUS
 <li><p>A standalone CoreOS VM version App can be found here <a href="https://github.com/rimusz/coreos-osx-gui">CoreOS-Vagrant GUI</a>.</p></li>
 <li><p>Cluster one without Kubernetes CoreOS VM App can be found here <a href="https://github.com/rimusz/coreos-osx-gui-cluster">CoreOS-Vagrant Cluster GUI</a>.</p></li>
 </ul>
-      </section>
-    </div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Coreos-osx-gui-kubernetes-cluster maintained by <a href="https://github.com/rimusz">rimusz</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/rimusz/coreos-osx-gui-kubernetes-cluster">Coreos-osx-gui-kubernetes-cluster</a> is maintained by <a href="https://github.com/rimusz">rimusz</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
 
-    
+    </section>
 
+  
   </body>
 </html>
+
