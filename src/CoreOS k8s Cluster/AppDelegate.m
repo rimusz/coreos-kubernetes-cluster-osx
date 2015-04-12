@@ -307,7 +307,7 @@
 
 
 - (IBAction)KubernetesUI:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:8001/#/dashboard/groups/type/selector/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:8001/#/dashboard/minions"]];
 }
 
 - (void)runScript:(NSString*)scriptName arguments:(NSString*)arguments

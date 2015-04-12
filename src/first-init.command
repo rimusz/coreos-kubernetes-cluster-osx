@@ -122,24 +122,20 @@ cd ~/coreos-k8s-cluster/workers
 vagrant up --provider virtualbox
 
 # Add vagrant ssh key to ssh-agent
-ssh-add ~/.vagrant.d/insecure_private_key
+ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 
-echo Installing k8s files to master
+echo " "
+echo " Installing k8s files to master and nodes:"
 cd ~/coreos-k8s-cluster/control
 vagrant scp master.tgz /home/core/
-vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
-echo "Done with k8smaster-01 "
-echo " "
-
-echo Installing k8s files to nodes
+vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
+#
 cd ~/coreos-k8s-cluster/workers
 vagrant scp nodes.tgz /home/core/
 #
-vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
-echo "Done with k8snode-01 "
-echo " "
-vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
-echo "Done with k8snode-02 "
+vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
+vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
+echo "Done installing ... "
 echo " "
 
 # download etcdctl and fleetctl
@@ -149,7 +145,7 @@ LATEST_RELEASE=$(vagrant ssh k8smaster-01 -c "etcdctl --version" | cut -d " " -f
 cd ~/coreos-k8s-cluster/bin
 echo "Downloading etcdctl $LATEST_RELEASE for OS X"
 curl -L -o etcd.zip "https://github.com/coreos/etcd/releases/download/v$LATEST_RELEASE/etcd-v$LATEST_RELEASE-darwin-amd64.zip"
-unzip -j -o "etcd.zip" "etcd-v$LATEST_RELEASE-darwin-amd64/etcdctl"
+unzip -j -o "etcd.zip" "etcd-v$LATEST_RELEASE-darwin-amd64/etcdctl" >/dev/null 2>&1
 rm -f etcd.zip
 echo " "
 
@@ -159,7 +155,7 @@ LATEST_RELEASE=$(vagrant ssh k8smaster-01 -c 'fleetctl version' | cut -d " " -f 
 cd ~/coreos-k8s-cluster/bin
 echo "Downloading fleetctl v$LATEST_RELEASE for OS X"
 curl -L -o fleet.zip "https://github.com/coreos/fleet/releases/download/v$LATEST_RELEASE/fleet-v$LATEST_RELEASE-darwin-amd64.zip"
-unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl"
+unzip -j -o "fleet.zip" "fleet-v$LATEST_RELEASE-darwin-amd64/fleetctl" >/dev/null 2>&1
 rm -f fleet.zip
 echo " "
 
@@ -194,9 +190,12 @@ i=0
 until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
 until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+# attach label to the nodes
+~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
+~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
 #
 echo " "
-echo "k8s nodes list:"
+echo "kubectl get nodes:"
 ~/coreos-k8s-cluster/bin/kubectl get nodes
 echo " "
 

@@ -35,6 +35,7 @@ chmod 755 kubectl
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-apiserver
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
+../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
 ../wget -N -P ./master http://storage.googleapis.com/k8s/kube-register
 tar czvf master.tgz -C master .
 rm -f ./master/*
@@ -42,6 +43,7 @@ rm -f ./master/*
 # nodes
 ../wget -N -P ./nodes https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubelet
 ../wget -N -P ./nodes https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-proxy
+../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
 tar czvf nodes.tgz -C nodes .
 rm -f ./nodes/*
 
