@@ -114,13 +114,20 @@ then
   ~/coreos-k8s-cluster/bin/fleetctl start kube-scheduler.service
 fi
 
-if [ "$(diff "$res_folder"/fleet/kubernetes-ui.service ~/coreos-k8s-cluster/fleet/kubernetes-ui.service | tr -d '\n' | cut -c1-4 )" != "" ]
+if [ ! -f ~/coreos-k8s-cluster/fleet/kubernetes-ui.service ]
 then
-echo "updating kubernetes-ui.service!"
-cp -fr "$res_folder"/fleet/kubernetes-ui.service ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
-~/coreos-k8s-cluster/bin/fleetctl destroy kubernetes-ui.service
-~/coreos-k8s-cluster/bin/fleetctl start kubernetes-ui.service
+    cp -fr "$res_folder"/fleet/kubernetes-ui.service ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
+    ~/coreos-k8s-cluster/bin/fleetctl start kubernetes-ui.service
+else
+    if [ "$(diff "$res_folder"/fleet/kubernetes-ui.service ~/coreos-k8s-cluster/fleet/kubernetes-ui.service | tr -d '\n' | cut -c1-4 )" != "" ]
+    then
+        echo "updating kubernetes-ui.service!"
+        cp -fr "$res_folder"/fleet/kubernetes-ui.service ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
+        ~/coreos-k8s-cluster/bin/fleetctl destroy kubernetes-ui.service
+        ~/coreos-k8s-cluster/bin/fleetctl start kubernetes-ui.service
+    fi
 fi
+
 #
 echo "Finished updating fleet units"
 ~/coreos-k8s-cluster/bin/fleetctl list-units
