@@ -40,7 +40,7 @@ sed -i "" 's/#$vm_memory = 1024/$vm_memory = 512/' ~/coreos-k8s-cluster/control/
 cp ~/coreos-k8s-cluster/tmp/config.rb.sample ~/coreos-k8s-cluster/workers/config.rb
 sed -i "" 's/#$instance_name_prefix="core"/$instance_name_prefix="k8snode"/' ~/coreos-k8s-cluster/workers/config.rb
 # set nodes to 2
-sed -i "" 's/#$num_instances=1/$num_instances=2/' ~/coreos-k8s-cluster/workers/config.rb
+sed -i "" 's/[#]*$num_instances=1/$num_instances=2/' ~/coreos-k8s-cluster/workers/config.rb
 
 ###
 
