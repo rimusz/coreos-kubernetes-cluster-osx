@@ -36,7 +36,8 @@ chmod 755 kubectl
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
-../wget -N -P ./master http://storage.googleapis.com/k8s/kube-register
+##../wget -N -P ./master http://storage.googleapis.com/k8s/kube-register
+../wget -N -O ./master/kube-register https://github.com/kelseyhightower/kube-register/releases/download/v0.0.3/kube-register-0.0.3-linux-amd64
 tar czvf master.tgz -C master .
 rm -f ./master/*
 

@@ -10,16 +10,29 @@ coreos:
     cluster-active-size: 1
     etcd-http-read-timeout: 86400
     snapshot: true
+  etcd2:
+    name: k8master-01
+    initial-advertise-peer-urls: http://$private_ipv4:2380
+    listen-peer-urls: http://$private_ipv4:2380,http://$private_ipv4:7001
+    initial-cluster-token: k8s_etcd
+    initial-cluster: k8master-01=http://$private_ipv4:2380
+    initial-cluster-state: new
+    advertise-client-urls: http://$public_ipv4:2379,http://$public_ipv4:4001
+    listen-client-urls: http://0.0.0.0:2379,http://0.0.0.0:4001
   fleet:
     public-ip: $public_ipv4
     metadata: role=control
+  flannel:
+    interface: $public_ipv4
   units:
     - name: flanneld.service
       drop-ins:
         - name: 50-network-config.conf
           content: |
+            [Unit]
+            Requires=etcd2.service
             [Service]
-            ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{ "Network": "10.244.0.0/16" }'
+            ExecStartPre=/usr/bin/etcdctl set /coreos.com/network/config '{"Network": "10.244.0.0/16", "Backend": {"Type": "vxlan"}}'
       command: start
     - name: etcd.service
       command: start

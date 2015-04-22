@@ -27,6 +27,8 @@ echo " "
 
 # set etcd endpoint
 export ETCDCTL_PEERS=http://172.17.15.101:4001
+export FLEETCTL_DRIVER=etcd
+export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "etcd cluster:"
 etcdctl --no-sync ls / --recursive
 echo " "

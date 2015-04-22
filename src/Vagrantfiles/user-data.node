@@ -7,6 +7,8 @@ coreos:
     etcd_servers: "http://172.17.15.101:4001"
     public-ip: $public_ipv4
     metadata: role=node
+  flannel:
+    interface: eth1
   units:
     - name: etcd.service
       mask: true
@@ -70,5 +72,6 @@ write_files:
     owner: core
     content: |
       # configure fleetctl to work with our etcd servers set above
-      export FLEETCTL_ENDPOINT=unix:///var/run/fleet.sock
-      export FLEETCTL_EXPERIMENTAL_API=true
+      export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+      export FLEETCTL_DRIVER=etcd
+

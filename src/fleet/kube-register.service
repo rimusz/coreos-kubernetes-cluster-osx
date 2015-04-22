@@ -6,7 +6,8 @@ Documentation=https://github.com/kelseyhightower/kube-register
 ExecStart=/opt/bin/kube-register \
 --metadata=role=node \
 --fleet-endpoint=unix:///var/run/fleet.sock \
---api-endpoint=http://127.0.0.1:8080
+--api-endpoint=http://127.0.0.1:8080 \
+--healthz-port=10255
 
 Restart=always
 RestartSec=10

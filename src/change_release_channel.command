@@ -29,10 +29,12 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-k8s-cluster/workers/user-data
         channel="Alpha"
         LOOP=0
     fi
@@ -43,10 +45,12 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/workers/user-data
         channel="Beta"
         LOOP=0
     fi
@@ -57,10 +61,12 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
+        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
+        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/workers/user-data
         channel="Stable"
         LOOP=0
     fi

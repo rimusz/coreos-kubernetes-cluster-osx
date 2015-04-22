@@ -43,7 +43,8 @@ echo "Downloading latest version of k8s master services"
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp http://storage.googleapis.com/k8s/kube-register
+###~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp http://storage.googleapis.com/k8s/kube-register
+~/coreos-k8s-cluster/bin/wget -N -O ~/coreos-k8s-cluster/tmp/kube-register https://github.com/kelseyhightower/kube-register/releases/download/v0.0.3/kube-register-0.0.3-linux-amd64
 tar czvf master.tgz *
 cp -f master.tgz ~/coreos-k8s-cluster/control/
 # clean up tmp folder
@@ -83,6 +84,7 @@ echo "Done with k8snode-02 "
 echo "Restarting fleet units:"
 # set fleetctl tunnel
 export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 cd ~/coreos-k8s-cluster/fleet
 ~/coreos-k8s-cluster/bin/fleetctl stop *.service

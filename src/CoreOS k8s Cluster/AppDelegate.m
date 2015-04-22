@@ -54,12 +54,12 @@
             if([content isEqualToString:version])
             {
                 // the same version
-                NSLog(@"the same version");
+                NSLog(@"the same App version");
             }
             else
             {
                 // different version
-                NSLog(@"not the same version");
+                NSLog(@"not the same App version");
                 
             }
             
@@ -284,7 +284,21 @@
     }
     else
     {
-        //        NSLog(@"Folder does not exist: '%@'", home_folder);
+        NSLog(@"Folder does not exist: '%@'", home_folder);
+        // create home folder and .env subfolder
+        NSString *env_folder = [home_folder stringByAppendingPathComponent:@".env"];
+        NSError * error = nil;
+        [[NSFileManager defaultManager] createDirectoryAtPath:env_folder
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+        // write to file App version
+        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+        NSData *app_version = [version dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/version"]
+                                                contents:app_version
+                                              attributes:nil];
+        
         NSString *scriptName = [[NSString alloc] init];
         NSString *arguments = [[NSString alloc] init];
         [self runScript:scriptName = @"coreos-vagrant-install" arguments:arguments = _resoucesPathFromApp ];
