@@ -22,20 +22,71 @@
     
     // get the App's main bundle path
     _resoucesPathFromApp = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@""];
-//    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
+    NSLog(@"applicationDirectory: '%@'", _resoucesPathFromApp);
 
     NSString *home_folder = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster"];
     
     BOOL isDir;
-    if([[NSFileManager defaultManager]
-        fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
+    if([[NSFileManager defaultManager] fileExistsAtPath:home_folder isDirectory:&isDir] && isDir)
+    // if coreos-k8s-cluster folder exists
     {
-        // run set_env
-        NSString *scriptName = [[NSString alloc] init];
-        NSString *arguments = [[NSString alloc] init];
-        [self runScript:scriptName = @"set_env" arguments:arguments = _resoucesPathFromApp ];
+        // set resouces_path
+        NSString *resources_content = _resoucesPathFromApp;
+        NSData *fileContents1 = [resources_content dataUsingEncoding:NSUTF8StringEncoding];
+        [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/resouces_path"]
+                                                contents:fileContents1
+                                              attributes:nil];
         
-        [self checkVMStatus];
+        if([[NSFileManager defaultManager] fileExistsAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/version"]] )
+        // if coreos-k8s-cluster/.env/version file exists
+        {
+
+            // check and set App verion
+            // read version from file
+            NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/version"];
+            NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+            NSLog(@"version file: '%@'", content);
+            
+            // get App version
+            NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+            
+            // compare versions
+            if([content isEqualToString:version])
+            {
+                // the same version
+                NSLog(@"the same version");
+            }
+            else
+            {
+                // different version
+                NSLog(@"not the same version");
+                
+            }
+            
+            // write to file
+            //        NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+            //        NSString *app_version = [NSString stringWithFormat:@"%@", version];
+            //        [self runScript:scriptName = @"set_version" arguments:arguments = app_version ];
+            
+            // App was updated
+            NSString *update_content = @"yes";
+            NSData *fileContents = [update_content dataUsingEncoding:NSUTF8StringEncoding];
+            [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/update"]
+                                                    contents:fileContents
+                                                  attributes:nil];
+            
+            [self checkVMStatus];
+        }
+        else
+        {
+            // write to file
+            NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+            NSData *app_version = [version dataUsingEncoding:NSUTF8StringEncoding];
+            [[NSFileManager defaultManager] createFileAtPath:[NSHomeDirectory() stringByAppendingPathComponent:@"coreos-k8s-cluster/.env/version"]
+                                                    contents:app_version
+                                                  attributes:nil];
+            [self checkVMStatus];
+        }
     }
     else
     {

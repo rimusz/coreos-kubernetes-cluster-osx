@@ -6,6 +6,9 @@
 #  Created by Rimantas on 01/12/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# get App's Resources folder
+res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
+
 # path to the bin folder where we store our binary files
 export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 
@@ -26,6 +29,17 @@ machine_status=$(vagrant status | grep -o -m 1 'not created')
 
 if [ "$machine_status" = "not created" ]
 then
+    # copy files needed for the App
+    # copy gsed to ~/coreos-k8s-cluster/bin
+    cp -f "${res_folder}"/gsed ~/coreos-k8s-cluster/bin
+    chmod 755 ~/coreos-k8s-cluster/bin/gsed
+    # copy wget with https support to ~/coreos-k8s-cluster/bin
+    cp -f "${res_folder}"/wget ~/coreos-k8s-cluster/bin
+    chmod 755 ~/coreos-k8s-cluster/bin/wget
+    # copy fleet units
+    cp -Rf "${res_folder}"/fleet/ ~/coreos-k8s-cluster/fleet
+
+    #
     vagrant up --provider virtualbox
     #
     cd ~/coreos-k8s-cluster/workers
@@ -52,6 +66,8 @@ then
     # install fleet units
     echo " "
     echo "Installing fleet units:"
+    # copy fleet units
+    cp -R "$1"/fleet/ ~/coreos-k8s-cluster/fleet
     cd ~/coreos-k8s-cluster/fleet
     fleetctl start *.service
     echo " "
