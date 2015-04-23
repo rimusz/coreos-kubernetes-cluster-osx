@@ -6,6 +6,9 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# get App's Resources folder
+res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
+
 echo " "
 echo Installing Kubernetes cluster...
 echo " "
@@ -23,9 +26,6 @@ echo ""
 cp ~/coreos-k8s-cluster/tmp/Vagrantfile ~/coreos-k8s-cluster/control/Vagrantfile
 cp ~/coreos-k8s-cluster/tmp/Vagrantfile ~/coreos-k8s-cluster/workers/Vagrantfile
 
-# change VM names
-###sed -i "" 's/core-%02d/k8smaster%02d/' ~/coreos-k8s-cluster/control/Vagrantfile
-###sed -i "" 's/core-%02d/k8snode%02d/' ~/coreos-k8s-cluster/workers/Vagrantfile
 # change control IP to static
 sed -i "" 's/172.17.8.#{i+100}/172.17.15.101/g' ~/coreos-k8s-cluster/control/Vagrantfile
 # change nodes network subnet and IP to start from
@@ -64,10 +64,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node ~/coreos-k8s-cluster/workers/user-data
         channel="Alpha"
         LOOP=0
     fi
@@ -78,10 +82,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control.etcd ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node.etcd ~/coreos-k8s-cluster/workers/user-data
         channel="Beta"
         LOOP=0
     fi
@@ -92,10 +100,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control.etcd ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node.etcd ~/coreos-k8s-cluster/workers/user-data
         channel="Stable"
         LOOP=0
     fi
@@ -167,6 +179,7 @@ echo " "
 
 # set fleetctl tunnel
 export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 ~/coreos-k8s-cluster/bin/fleetctl list-machines

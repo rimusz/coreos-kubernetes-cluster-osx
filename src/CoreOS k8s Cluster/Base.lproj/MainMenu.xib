@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -710,6 +710,7 @@
                         <action selector="open_shell:" target="494" id="Y99-xn-ZUH"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="g1q-tp-f1W"/>
                 <menuItem title="Fleet-UI" id="lAb-dI-Mub" userLabel="Fleet-UI">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -723,6 +724,19 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="k2D-0b-tel"/>
+                <menuItem title="node-01 cAdvisor" id="bXS-8Q-f6a">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="node1_cAdvisor:" target="494" id="8AX-S8-lIe"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="node-02 cAdvisor" id="gJ5-M6-JAJ">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="node2_cAdvisor:" target="494" id="Jtp-fZ-Ozi"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="JNE-kH-7PZ"/>
                 <menuItem title="Updates" id="VT6-tu-oxP" userLabel="Menu Item - Updates">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Updates" id="DFA-8C-ne3">

@@ -3,6 +3,8 @@ CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 
 `CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X` is a Mac Status bar App which works like a wrapper around [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool and bootstraps Kubernetes cluster with one master and two minions machines.
 
+Note: Alpha channel uses etcd2, beta and stable are still on etcd 0.4.
+
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
 [CoreOS-Vagrant](https://github.com/coreos/coreos-vagrant) is made to run on VirtualBox and VMWare VMs.
 
@@ -44,14 +46,15 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 1) kubernetes master - export KUBERNETES_MASTER=http://172.17.15.101:8080
 2) etcd endpoint - export ETCDCTL_PEERS=http://172.17.15.101:4001
 3) fleetctl endpoint - export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
-4) Path to ~/coreos-osx-cluster/bin where etcdctl, fleetctl and kubernetes binaries are stored
+4) fleetctl driver - export FLEETCTL_DRIVER=etcd
+5) Path to ~/coreos-osx-cluster/bin where etcdctl, fleetctl and kubernetes binaries are stored
 ````
 
 * `Updates/Force CoreOS update` will be run `sudo update_engine_client -update` on each CoreOS VM.
 * `Updates/Check for updates` will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run.
 * `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
-* [Kubernetes-UI](https://github.com/kubernetes-ui) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
+* [Kismatic.io](http://kismatic.io/) [Kubernetes-UI](https://github.com/kubernetes-ui) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
 
 
 Example ouput of succesfull CoreOS + Kubernetes cluster install:
@@ -83,8 +86,8 @@ kubernetes-ui.service		f01c50e9.../172.17.15.101	active	running
 
 k8s nodes list:
 NAME                LABELS              STATUS
-172.17.15.102       <none>              Ready
-172.17.15.103       <none>              Ready
+172.17.15.102       node=worker1        Ready
+172.17.15.103       node=worker2        Ready
 
 ````
 
