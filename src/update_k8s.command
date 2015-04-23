@@ -44,7 +44,8 @@ echo "Downloading latest version of k8s master services"
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
 ###~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp http://storage.googleapis.com/k8s/kube-register
-~/coreos-k8s-cluster/bin/wget -N -O ~/coreos-k8s-cluster/tmp/kube-register https://github.com/kelseyhightower/kube-register/releases/download/v0.0.3/kube-register-0.0.3-linux-amd64
+LKR=$(curl 'https://api.github.com/repos/kelseyhightower/kube-register/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' "' | cut -c 2-)
+../wget -N -O ./master/kube-register https://github.com/kelseyhightower/kube-register/releases/download/v$LKR/kube-register-$LKR-linux-amd64
 tar czvf master.tgz *
 cp -f master.tgz ~/coreos-k8s-cluster/control/
 # clean up tmp folder

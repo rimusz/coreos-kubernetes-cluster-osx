@@ -6,6 +6,8 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# get App's Resources folder
+res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
 
 ### Set release channel
 LOOP=1
@@ -29,12 +31,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/control/config.rb
-        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-k8s-cluster/control/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='alpha'/" ~/coreos-k8s-cluster/workers/config.rb
-        sed -i "" "s/etcd.service/etcd2.service/" ~/coreos-k8s-cluster/workers/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node ~/coreos-k8s-cluster/workers/user-data
         channel="Alpha"
         LOOP=0
     fi
@@ -45,12 +49,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/control/config.rb
-        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/control/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control.etcd ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='stable'/channel='beta'/" ~/coreos-k8s-cluster/workers/config.rb
-        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/workers/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node.etcd ~/coreos-k8s-cluster/workers/user-data
         channel="Beta"
         LOOP=0
     fi
@@ -61,12 +67,14 @@ do
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/control/config.rb
-        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/control/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.control.etcd ~/coreos-k8s-cluster/control/user-data
         #
         sed -i "" 's/#$update_channel/$update_channel/' ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='alpha'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
         sed -i "" "s/channel='beta'/channel='stable'/" ~/coreos-k8s-cluster/workers/config.rb
-        sed -i "" "s/etcd2.service/etcd.service/" ~/coreos-k8s-cluster/workers/user-data
+        # overwriting user-data file till etcd2 reaches stable channel
+        cp -fr "$res_folder"/Vagrantfiles/user-data.node.etcd ~/coreos-k8s-cluster/workers/user-data
         channel="Stable"
         LOOP=0
     fi
@@ -84,6 +92,8 @@ read -p "$*"
 
 #
 echo "The 'config.rb' file was updated to $channel channel !!!"
+echo "and the 'user-data' file was copied with necessary etcd/etcd2 settings !!! "
 echo "You need to run 'Destroy Cluster (vagrant destroy)' and then"
-echo "on next 'Up & OS shell' new cluster will be created !!!"
+echo "on next 'Up' new cluster will be created !!!"
 pause 'Press [Enter] key to continue...'
+
