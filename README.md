@@ -50,9 +50,13 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 5) Path to ~/coreos-osx-cluster/bin where etcdctl, fleetctl and kubernetes binaries are stored
 ````
 
+* `Updates/Update Kubernetes cluster and OS X kubectl` will update to latest version of Kubernetes.
+* `Updates/Update OS X fleetctl, etcdclt and fleet units` will update fleetctl, etcdclt clients to the same versions as CoreOS VMs run and to latest fleet units if the new version of App is used.
 * `Updates/Force CoreOS update` will be run `sudo update_engine_client -update` on each CoreOS VM.
-* `Updates/Check for updates` will update etcdclt, fleetctl and kubernetes OS X clients to the same versions as CoreOS VMs run.
+* `Updates/Check updates for CoreOS vbox` will update CoreOS VM vagrant box.
+*
 * `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
+* `node1/2 cAdvisor` will open cAdvisor URL in default browser
 * [Fleet-UI](http://fleetui.com) will show running fleet units and etc
 * [Kismatic.io](http://kismatic.io/) [Kubernetes-UI](https://github.com/kubernetes-ui) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
 
