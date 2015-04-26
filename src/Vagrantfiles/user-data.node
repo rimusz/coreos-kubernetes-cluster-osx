@@ -30,7 +30,7 @@ coreos:
         - name: 50-insecure-registry.conf
           content: |
             [Unit]
-            Require=flanneld.service
+            Requires=flanneld.service
             After=flanneld.service
             [Service]
             Environment=DOCKER_OPTS='--insecure-registry="0.0.0.0/0"'

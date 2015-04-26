@@ -51,7 +51,7 @@ then
 
     # install k8s files on master
     echo " "
-    echo " Installing k8s files to master and nodes:"
+    echo "Installing k8s files to master and nodes:"
     cd ~/coreos-k8s-cluster/control
     vagrant scp master.tgz /home/core/
     vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* && ls -alh /opt/bin " >/dev/null 2>&1
@@ -68,7 +68,8 @@ then
     echo " "
     echo "Installing fleet units:"
     # copy fleet units
-    cp -R "$1"/fleet/ ~/coreos-k8s-cluster/fleet
+    rm -f ~/coreos-k8s-cluster/fleet/*
+    cp -fR "$res_folder"/fleet/ ~/coreos-k8s-cluster/fleet
     cd ~/coreos-k8s-cluster/fleet
     fleetctl start *.service
     echo " "
