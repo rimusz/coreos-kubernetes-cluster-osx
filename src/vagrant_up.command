@@ -6,6 +6,9 @@
 #  Created by Rimantas on 01/12/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# Add vagrant ssh key to ssh-agent
+ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
+
 # get App's Resources folder
 res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
 
@@ -45,9 +48,6 @@ then
     #
     cd ~/coreos-k8s-cluster/workers
     vagrant up --provider virtualbox
-
-    # Add vagrant ssh key to ssh-agent
-    ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 
     # install k8s files on master
     echo " "
