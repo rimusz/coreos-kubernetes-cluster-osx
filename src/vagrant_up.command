@@ -88,8 +88,13 @@ then
     ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
     echo " "
 else
+    # start control
     vagrant up
     #
+    ~/coreos-k8s-cluster/bin/fleetctl stop ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
+    ~/coreos-k8s-cluster/bin/fleetctl destroy ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
+    rm -f ~/coreos-k8s-cluster/fleet/kubernetes-ui.service
+    # start nodes 
     cd ~/coreos-k8s-cluster/workers
     vagrant up
 fi
