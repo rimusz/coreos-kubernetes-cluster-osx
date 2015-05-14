@@ -3,7 +3,7 @@ CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 
 `CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X` is a Mac Status bar App which works like a wrapper around [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool and bootstraps Kubernetes cluster with one master and two minions machines.
 
-Note: Alpha channel uses etcd2, beta and stable are still on etcd 0.4.
+Note: Alpha and beta channel use etcd2, stable is still on etcd 0.4.
 
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
 [CoreOS-Vagrant](https://github.com/coreos/coreos-vagrant) is made to run on VirtualBox and VMWare VMs.
@@ -57,8 +57,8 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 *
 * `SSH to k8smaster01 and k8snode-01/02` menu options will open VM shells
 * `node1/2 cAdvisor` will open cAdvisor URL in default browser
-* [Fleet-UI](http://fleetui.com) will show running fleet units and etc
-* [Kismatic.io](http://kismatic.io/) [Kubernetes-UI](https://github.com/kubernetes-ui) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
+* [Fleet-UI](http://fleetui.com) dashboard will show running fleet units and etc
+* [Kubernetes-UI](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/www) (contributed by [Kismatic.io](http://kismatic.io/)) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
 
 
 Example ouput of succesfull CoreOS + Kubernetes cluster install:
