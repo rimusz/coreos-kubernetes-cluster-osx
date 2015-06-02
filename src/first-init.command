@@ -128,9 +128,11 @@ read -p "$*"
 echo " "
 echo "Setting up Vagrant VMs for CoreOS Kubernetes Cluster on OS X"
 cd ~/coreos-k8s-cluster/control
+vagrant box update
 vagrant up --provider virtualbox
 #
 cd ~/coreos-k8s-cluster/workers
+vagrant box update
 vagrant up --provider virtualbox
 
 # Add vagrant ssh key to ssh-agent
@@ -215,7 +217,7 @@ echo " "
 #
 echo " "
 echo "Installation has finished, CoreOS VMs are up and running !!!"
-echo "Enjoy CoreOS-Vagrant Kubernetes Cluster on your Mac !!!"
+echo "Enjoy CoreOS+Kubernetes Cluster on your Mac !!!"
 echo " "
 echo "Run from menu 'OS Shell' to open a terninal window with fleetctl, etcdctl and kubectl preset to master's IP!!!"
 echo " "
