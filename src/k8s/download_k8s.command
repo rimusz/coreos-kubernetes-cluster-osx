@@ -36,7 +36,7 @@ chmod 755 kubectl
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
 ../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
-##../wget -N -P ./master http://storage.googleapis.com/k8s/kube-register
+#
 LKR=$(curl 'https://api.github.com/repos/kelseyhightower/kube-register/releases' 2>/dev/null|grep -o -m 1 -e "\"tag_name\":[[:space:]]*\"[a-z0-9.]*\""|head -1|cut -d: -f2|tr -d ' "' | cut -c 2-)
 ../wget -N -O ./master/kube-register https://github.com/kelseyhightower/kube-register/releases/download/v$LKR/kube-register-$LKR-linux-amd64
 tar czvf master.tgz -C master .

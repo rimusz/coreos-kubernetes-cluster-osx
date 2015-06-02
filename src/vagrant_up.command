@@ -44,9 +44,11 @@ then
     cp -Rf "${res_folder}"/fleet/ ~/coreos-k8s-cluster/fleet
 
     #
+    vagrant box update
     vagrant up --provider virtualbox
     #
     cd ~/coreos-k8s-cluster/workers
+    vagrant box update
     vagrant up --provider virtualbox
 
     # install k8s files on master
