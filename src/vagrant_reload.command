@@ -31,7 +31,7 @@ export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
 fleetctl list-machines
-ech " "
+echo " "
 echo "fleetctl list-units:"
 fleetctl list-units
 echo " "

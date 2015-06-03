@@ -4,8 +4,8 @@ Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
 ExecStart=/opt/bin/kube-controller-manager \
---master=127.0.0.1:8080 \
---logtostderr=true
+ --master=127.0.0.1:8080 \
+ --logtostderr=true
 
 Restart=always
 RestartSec=10

@@ -17,6 +17,7 @@ echo "Done with k8smaster-01 "
 echo " "
 #
 cd ~/coreos-k8s-cluster/workers
+vagrant up
 vagrant ssh k8snode-01 -c "sudo update_engine_client -update"
 echo "Done with k8snode-01 "
 echo " "
