@@ -105,7 +105,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"CoreOS-Vagrant k8s Cluster was not set."];
+        [alert setMessageText:@"CoreOS+Kubernetes Cluster was not set."];
         [alert setInformativeText:@"Do you want to set it up?"];
         [alert setAlertStyle:NSWarningAlertStyle];
         
@@ -116,7 +116,7 @@
         else
         {
             // Cancel clicked
-            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant k8s Cluster' at any time later one !!! "];
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS+Kubernetes Cluster' at any time later one !!! "];
             [self displayWithMessage:@"You can set Kubernetes Cluster from menu 'Setup':" infoText:msg];
         }
     }
@@ -133,7 +133,7 @@
     {
         // send a notification on to the screen
         NSUserNotification *notification = [[NSUserNotification alloc] init];
-        notification.title = @"CoreOS-Vagrant k8s Cluster will be up shortly";
+        notification.title = @"CoreOS+Kubernetes Cluster will be up shortly";
         notification.informativeText = @"and OS shell will be opened";
         [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
         
@@ -146,7 +146,7 @@
         NSAlert *alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert addButtonWithTitle:@"Cancel"];
-        [alert setMessageText:@"CoreOS-Vagrant k8s Cluster was not set."];
+        [alert setMessageText:@"CoreOS+Kubernetes Cluster was not set."];
         [alert setInformativeText:@"Do you want to set it up?"];
         [alert setAlertStyle:NSWarningAlertStyle];
         
@@ -157,7 +157,7 @@
         else
         {
             // Cancel clicked
-            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS-Vagrant k8s Cluster' at any time later one !!! "];
+            NSString *msg = [NSString stringWithFormat:@"%@ ", @" 'Initial setup of CoreOS+Kubernetes Cluster' at any time later one !!! "];
             [self displayWithMessage:@"You can set Kubernetes Cluster from menu 'Setup':" infoText:msg];
         }
     }
@@ -166,7 +166,7 @@
 - (IBAction)Pause:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant k8s Cluster will be suspended";
+    notification.informativeText = @"CoreOS+Kubernetes Cluster will be suspended";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -179,7 +179,7 @@
 - (IBAction)Stop:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant k8s Cluster will be stopped";
+    notification.informativeText = @"CoreOS+Kubernetes Cluster will be stopped";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *scriptName = [[NSString alloc] init];
@@ -192,7 +192,7 @@
 - (IBAction)Restart:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant k8s Cluster will be reloaded";
+    notification.informativeText = @"CoreOS+Kubernetes Cluster will be reloaded";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -207,7 +207,7 @@
 - (IBAction)update_k8s:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"Kubernetes cluster and";
+    notification.title = @"Kubernetes Cluster and";
     notification.informativeText = @"OS X kubectl will be updated";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
@@ -261,7 +261,7 @@
 - (IBAction)changeReleaseChannel:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant k8s Cluster release channel change";
+    notification.informativeText = @"CoreOS release channel change";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -274,7 +274,7 @@
 - (IBAction)destroy:(id)sender {
     // send a notification on to the screen
     NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.informativeText = @"CoreOS-Vagrant k8s Cluster will be destroyed";
+    notification.informativeText = @"CoreOS+Kubernetes Cluster will be destroyed";
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
     
     NSString *appName = [[NSString alloc] init];
@@ -292,7 +292,7 @@
     if([[NSFileManager defaultManager]
         fileExistsAtPath:home_folder isDirectory:&isDir] && isDir){
         NSString *msg = [NSString stringWithFormat:@"%@ %@ %@", @"Folder", home_folder, @"exists, please delete or rename that folder !!!"];
-        [self displayWithMessage:@"CoreOS-Vagrant k8s Cluster" infoText:msg];
+        [self displayWithMessage:@"CoreOS+Kubernetes Cluster" infoText:msg];
     }
     else
     {
@@ -332,8 +332,8 @@
 //    NSString *app_version = [NSString stringWithFormat:@"%@.%@", version, build];
     NSString *app_version = [NSString stringWithFormat:@"%@", version];
     
-    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS-Vagrant k8s Cluster for OS X", app_version];
-    NSString *infoText = @"It is a simple wrapper around the CoreOS-Vagrant, which allows to control CoreOS-Vagrant k8s Cluster via Status Bar !!!";
+    NSString *mText = [NSString stringWithFormat:@"%@ %@", @"CoreOS+Kubernetes Cluster for OS X", app_version];
+    NSString *infoText = @"It is a simple wrapper around the CoreOS-Vagrant, which allows to control CoreOS+Kubernetes Cluster via Status Bar !!!";
     [self displayWithMessage:mText infoText:infoText];
 }
 

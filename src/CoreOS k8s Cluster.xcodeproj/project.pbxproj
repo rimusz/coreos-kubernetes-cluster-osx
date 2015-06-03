@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		011146541A7D848C008E0FB2 /* icon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 011146531A7D848C008E0FB2 /* icon2.png */; };
 		011146561A7D9AF7008E0FB2 /* wget in Resources */ = {isa = PBXBuildFile; fileRef = 011146551A7D9AF7008E0FB2 /* wget */; };
-		011BBA301A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA2E1A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png */; };
-		011BBA311A2A6E2500AAB35B /* coreos-wordmark-vert-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA2F1A2A6E2500AAB35B /* coreos-wordmark-vert-color.png */; };
 		011BBA341A2A7B0600AAB35B /* vagrant_node1.command in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA321A2A7B0600AAB35B /* vagrant_node1.command */; };
 		011BBA351A2A7B0600AAB35B /* vagrant_node2.command in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA331A2A7B0600AAB35B /* vagrant_node2.command */; };
 		011BBA391A2A829F00AAB35B /* vagrant_destroy.command in Resources */ = {isa = PBXBuildFile; fileRef = 011BBA381A2A829F00AAB35B /* vagrant_destroy.command */; };
@@ -44,8 +42,6 @@
 /* Begin PBXFileReference section */
 		011146531A7D848C008E0FB2 /* icon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon2.png; sourceTree = "<group>"; };
 		011146551A7D9AF7008E0FB2 /* wget */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = wget; sourceTree = SOURCE_ROOT; };
-		011BBA2E1A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-horiz-color.png"; sourceTree = "<group>"; };
-		011BBA2F1A2A6E2500AAB35B /* coreos-wordmark-vert-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "coreos-wordmark-vert-color.png"; sourceTree = "<group>"; };
 		011BBA321A2A7B0600AAB35B /* vagrant_node1.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_node1.command; sourceTree = "<group>"; };
 		011BBA331A2A7B0600AAB35B /* vagrant_node2.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_node2.command; sourceTree = "<group>"; };
 		011BBA381A2A829F00AAB35B /* vagrant_destroy.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vagrant_destroy.command; sourceTree = "<group>"; };
@@ -199,8 +195,6 @@
 		01E285D018A6F79800BC630D /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				011BBA2E1A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png */,
-				011BBA2F1A2A6E2500AAB35B /* coreos-wordmark-vert-color.png */,
 				01E285B718A6D7F400BC630D /* icon.png */,
 				01D3685818E5C184006510B5 /* icon.icns */,
 				011146531A7D848C008E0FB2 /* icon2.png */,
@@ -277,7 +271,6 @@
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */,
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
-				011BBA301A2A6E2500AAB35B /* coreos-wordmark-horiz-color.png in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
 				011146561A7D9AF7008E0FB2 /* wget in Resources */,
 				011BBA391A2A829F00AAB35B /* vagrant_destroy.command in Resources */,
@@ -292,7 +285,6 @@
 				011BBA3B1A2A842A00AAB35B /* change_release_channel.command in Resources */,
 				01689B731A2D1A260099CB78 /* fleet in Resources */,
 				01BB60D31AB74AE60069BF30 /* k8s in Resources */,
-				011BBA311A2A6E2500AAB35B /* coreos-wordmark-vert-color.png in Resources */,
 				01E2854E18A6C4E300BC630D /* Credits.rtf in Resources */,
 				01E2855418A6C4E300BC630D /* MainMenu.xib in Resources */,
 				01741B67190DB82100BB1F91 /* update.command in Resources */,
