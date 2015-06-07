@@ -107,7 +107,7 @@ Some examples to start with [Kubernetes examples](https://github.com/GoogleCloud
 
 Other links
 -----------
-* A standalone Kunernetes CoreOS VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo).
+* A standalone Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo).
 
 * A standalone one without Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant GUI](https://github.com/rimusz/coreos-osx-gui).
 
