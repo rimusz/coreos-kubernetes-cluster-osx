@@ -99,14 +99,6 @@ then
   ~/coreos-k8s-cluster/bin/fleetctl start kube-proxy.service
 fi
 
-if [ "$(diff "$res_folder"/fleet/kube-register.service ~/coreos-k8s-cluster/fleet/kube-register.service | tr -d '\n' | cut -c1-4 )" != "" ]
-then
-  echo "updating kube-register.service!"
-  cp -fr "$res_folder"/fleet/kube-register.service ~/coreos-k8s-cluster/fleet/kube-register.service
-  ~/coreos-k8s-cluster/bin/fleetctl destroy kube-register.service
-  ~/coreos-k8s-cluster/bin/fleetctl start kube-register.service
-fi
-
 if [ "$(diff "$res_folder"/fleet/kube-scheduler.service ~/coreos-k8s-cluster/fleet/kube-scheduler.service | tr -d '\n' | cut -c1-4 )" != "" ]
 then
   echo "updating kube-scheduler.service!"

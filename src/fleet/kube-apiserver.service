@@ -14,7 +14,7 @@ ExecStart=/opt/bin/kube-apiserver \
  --public_address_override=127.0.0.1 \
  --cors_allowed_origins=.* \
  --logtostderr=true
- --runtime_config=api/v1beta3
+ --runtime_config=api/v1
 
 Restart=always
 RestartSec=10

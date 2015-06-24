@@ -6,10 +6,12 @@
 #  Created by Rimantas on 01/04/2014.
 #  Copyright (c) 2014 Rimantas Mocevicius. All rights reserved.
 
+# overwrite for OS X 10.11
+vagrant=/usr/local/bin/vagrant
 
 # pass first argument - up, halt ...
 cd ~/coreos-k8s-cluster/control
-vagrant $1
+$vagrant $1
 
 cd ~/coreos-k8s-cluster/workers
-vagrant $1
+$vagrant $1
