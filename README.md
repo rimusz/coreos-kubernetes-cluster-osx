@@ -4,14 +4,13 @@ CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 
 `CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X` is a Mac Status bar App which works like a wrapper around [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool and bootstraps Kubernetes cluster with one master and two minions machines.
 
-Full support of etcd2 in all CoresOS channels.
+Fully supports etcd2 in all CoresOS channels.
 
 ####Note: OS X El Capitan:
 
 * If you do a fresh install OS X El Capitan support will be enabled
 
-* Otherwise run: `ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1`
-
+* Otherwise run: `ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1` 
 
 
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
@@ -114,7 +113,7 @@ Some examples to start with [Kubernetes examples](https://github.com/GoogleCloud
 
 Other links
 -----------
-* A standalone Kunernetes CoreOS VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo).
+* A standalone Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant Kubernetes Solo GUI](https://github.com/rimusz/coreos-osx-gui-kubernetes-solo).
 
 * A standalone one without Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant GUI](https://github.com/rimusz/coreos-osx-gui).
 
