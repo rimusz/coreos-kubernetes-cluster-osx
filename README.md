@@ -84,9 +84,7 @@ kube-kubelet.service		9b88a46c.../172.17.15.103	active	running
 kube-kubelet.service		d0c68677.../172.17.15.102	active	running
 kube-proxy.service		9b88a46c.../172.17.15.103	active	running
 kube-proxy.service		d0c68677.../172.17.15.102	active	running
-kube-register.service		f93b555e.../172.17.15.101	active	running
 kube-scheduler.service		f93b555e.../172.17.15.101	active	running
-kubernetes-ui.service		f01c50e9.../172.17.15.101	active	running
 
 k8s nodes list:
 NAME                LABELS              STATUS
