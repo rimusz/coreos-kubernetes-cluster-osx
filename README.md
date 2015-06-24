@@ -1,5 +1,6 @@
 CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 ============================
+![k8s-multinode](k8s-multinode.png)
 
 `CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X` is a Mac Status bar App which works like a wrapper around [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool and bootstraps Kubernetes cluster with one master and two minions machines.
 
