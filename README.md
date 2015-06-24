@@ -1,10 +1,17 @@
 CoreOS-Vagrant Kubernetes Cluster GUI for OS X
 ============================
-![k8s-multi-node](https://github.com/brendandburns/kubernetes/blob/docs/docs/getting-started-guides/k8s-docker.png)
+![k8s-multinode](k8s-multinode.png)
 
 `CoreOS-Vagrant Kubernetes Cluster GUI for Mac OS X` is a Mac Status bar App which works like a wrapper around [coreos-vagrant](https://github.com/coreos/coreos-vagrant) command line tool and bootstraps Kubernetes cluster with one master and two minions machines.
 
-Note: Fully supports etcd2 in all CoresOS channels.
+Fully supports etcd2 in all CoresOS channels.
+
+####Note: OS X El Capitan:
+
+* If you do a fresh install OS X El Capitan support will be enabled
+
+* Otherwise run: `ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1` 
+
 
 [CoreOS](https://coreos.com) is a Linux distribution made specifically to run [Docker](https://www.docker.io/) containers.
 [CoreOS-Vagrant](https://github.com/coreos/coreos-vagrant) is made to run on VirtualBox and VMWare VMs.
@@ -85,9 +92,7 @@ kube-kubelet.service		9b88a46c.../172.17.15.103	active	running
 kube-kubelet.service		d0c68677.../172.17.15.102	active	running
 kube-proxy.service		9b88a46c.../172.17.15.103	active	running
 kube-proxy.service		d0c68677.../172.17.15.102	active	running
-kube-register.service		f93b555e.../172.17.15.101	active	running
 kube-scheduler.service		f93b555e.../172.17.15.101	active	running
-kubernetes-ui.service		f01c50e9.../172.17.15.101	active	running
 
 k8s nodes list:
 NAME                LABELS              STATUS
