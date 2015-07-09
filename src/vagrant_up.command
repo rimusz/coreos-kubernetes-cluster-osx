@@ -16,10 +16,10 @@ res_folder=$(cat ~/coreos-k8s-cluster/.env/resouces_path)
 export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.17.15.101:4001
+export ETCDCTL_PEERS=http://172.17.15.101:2379
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 #
@@ -42,6 +42,8 @@ then
     chmod 755 ~/coreos-k8s-cluster/bin/wget
     # copy fleet units
     cp -Rf "${res_folder}"/fleet/ ~/coreos-k8s-cluster/fleet
+    # copy k8s UI files
+    cp -f "${res_folder}"/k8s/*.yaml ~/coreos-k8s-cluster/kubernetes
 
     #
     vagrant box update
@@ -88,7 +90,15 @@ then
     # attach label to the nodes
     ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
     ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
+    #
     echo " "
+    echo "Installing k8s UI ..."
+    ~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
+    ~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+    # clean up kubernetes folder
+    rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
+    rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+
 else
     # start control
     vagrant up
@@ -104,15 +114,32 @@ fi
 
 #
 echo "etcd cluster:"
+spin='-\|/'
+i=0
+until ~/coreos-k8s-cluster/bin/etcdctl --no-sync ls / | grep 'coreos.com' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 etcdctl --no-sync ls /
 echo ""
 #
 echo "fleetctl list-machines:"
+spin='-\|/'
+i=0
+until ~/coreos-k8s-cluster/bin/fleetctl list-machines | grep 'role=kube' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 fleetctl list-machines
 echo " "
 #
 echo "fleetctl list-units:"
 fleetctl list-units
+echo " "
+#
+
+echo Waiting for Kubernetes cluster to be ready. This can take a few minutes...
+spin='-\|/'
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 echo " "
 #
 echo "kubectl get nodes:"

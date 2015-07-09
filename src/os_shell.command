@@ -13,13 +13,13 @@ ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.17.15.101:4001
+export ETCDCTL_PEERS=http://172.17.15.101:2379
 echo "etcd cluster:"
 etcdctl --no-sync ls /
 echo ""
 
 # set fleetctl endpoint
-export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
