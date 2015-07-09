@@ -114,16 +114,10 @@ fi
 
 #
 echo "etcd cluster:"
-spin='-\|/'
-i=0
-until ~/coreos-k8s-cluster/bin/etcdctl --no-sync ls / | grep 'coreos.com' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 etcdctl --no-sync ls /
 echo ""
 #
 echo "fleetctl list-machines:"
-spin='-\|/'
-i=0
-until ~/coreos-k8s-cluster/bin/fleetctl list-machines | grep 'role=kube' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 fleetctl list-machines
 echo " "
 #
