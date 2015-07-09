@@ -392,7 +392,7 @@
 
 
 - (IBAction)KubernetesUI:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:8080/static/app/#/dashboard/"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://172.17.15.101:8080/ui"]];
 }
 
 - (IBAction)node1_cAdvisor:(id)sender {
