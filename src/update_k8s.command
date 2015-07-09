@@ -82,7 +82,7 @@ echo "Done with k8snode-02 "
 # restart fleet units
 echo "Restarting fleet units:"
 # set fleetctl tunnel
-export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 cd ~/coreos-k8s-cluster/fleet

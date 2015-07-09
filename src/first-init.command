@@ -161,13 +161,13 @@ rm -f fleet.zip
 echo " "
 
 # set etcd endpoint
-export ETCDCTL_PEERS=http://172.17.15.101:4001
+export ETCDCTL_PEERS=http://172.17.15.101:2379
 echo "etcd cluster:"
 ~/coreos-k8s-cluster/bin/etcdctl ls /
 echo " "
 
 # set fleetctl tunnel
-export FLEETCTL_ENDPOINT=http://172.17.15.101:4001
+export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
 echo "fleetctl list-machines:"
@@ -195,6 +195,15 @@ until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null
 # attach label to the nodes
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
+#
+echo " "
+echo "Installing k8s UI ..."
+~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
+~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+# clean up kubernetes folder
+rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+
 #
 echo " "
 echo "kubectl get nodes:"
