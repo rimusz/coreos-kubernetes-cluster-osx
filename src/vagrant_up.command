@@ -93,8 +93,8 @@ then
     #
     echo " "
     echo "Installing k8s UI ..."
-    ~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
-    ~/coreos-k8s-solo/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+    ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
+    ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
     # clean up kubernetes folder
     rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
     rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
