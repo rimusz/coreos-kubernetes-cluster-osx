@@ -10,40 +10,36 @@ function pause(){
 read -p "$*"
 }
 
-#
-cd ~/coreos-k8s-cluster/tmp
-
 # get latest k8s version
 function get_latest_version_number {
 local -r latest_url="https://storage.googleapis.com/kubernetes-release/release/latest.txt"
 if [[ $(which wget) ]]; then
-wget -qO- ${latest_url}
+    wget -qO- ${latest_url}
 elif [[ $(which curl) ]]; then
-curl -Ss ${latest_url}
+    curl -Ss ${latest_url}
 fi
 }
 
 K8S_VERSION=$(get_latest_version_number)
 
 # download latest version of kubectl for OS X
-cd ~/coreos-k8s-cluster/tmp
 echo "Downloading kubectl $K8S_VERSION for OS X"
 ~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/bin https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
-chmod 755 ~/coreos-k8s-cluster/bin/kubectl
-echo "kubectl was copied to ~/coreos-k8s-cluster/bin"
+chmod a+x ~/coreos-k8s-cluster/bin/kubectl
+echo "kubectl was downloaded to ~/coreos-k8s-cluster/bin"
 echo " "
 
+cd ~/coreos-k8s-cluster/tmp
 # clean up tmp folder
 rm -rf ~/coreos-k8s-cluster/tmp/*
-
 # download latest version of k8s for CoreOS
 # master
 echo "Downloading latest version of k8s master services"
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-apiserver
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
-#
+bins=( kubectl kube-apiserver kube-scheduler kube-controller-manager )
+for b in "${bins[@]}"; do
+    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
+done
+chmod a+x ~/coreos-k8s-cluster/tmp/*
 tar czvf master.tgz *
 cp -f master.tgz ~/coreos-k8s-cluster/control/
 # clean up tmp folder
@@ -52,9 +48,11 @@ echo " "
 
 # nodes
 echo "Downloading latest version of k8s node services"
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubelet
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-proxy
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/tmp https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
+bins=( kubectl kubelet kube-proxy )
+for b in "${bins[@]}"; do
+    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
+done
+chmod a+x ~/coreos-k8s-cluster/tmp/*
 tar czvf nodes.tgz *
 cp -f nodes.tgz ~/coreos-k8s-cluster/workers/
 # clean up tmp folder

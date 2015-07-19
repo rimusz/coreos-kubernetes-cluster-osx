@@ -27,23 +27,25 @@ K8S_VERSION=$(get_latest_version_number)
 
 # download latest version of kubectl for OS X
 echo "Downloading kubectl $K8S_VERSION for OS X"
-../wget https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
-chmod 755 kubectl
+curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl > kubectl
+chmod a+x kubectl
 
 # download latest version of k8s binaries for CoreOS
 # master
-../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-apiserver
-../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-controller-manager
-../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-scheduler
-../wget -N -P ./master https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
-#
+bins=( kubectl kube-apiserver kube-scheduler kube-controller-manager )
+for b in "${bins[@]}"; do
+    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > master/$b
+done
+chmod a+x master/*
 tar czvf master.tgz -C master .
 rm -f ./master/*
 
 # nodes
-../wget -N -P ./nodes https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubelet
-../wget -N -P ./nodes https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kube-proxy
-../wget -N -P ./nodes https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/kubectl
+bins=( kubectl kubelet kube-proxy )
+for b in "${bins[@]}"; do
+    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > nodes/$b
+done
+chmod a+x nodes/*
 tar czvf nodes.tgz -C nodes .
 rm -f ./nodes/*
 

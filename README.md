@@ -42,6 +42,7 @@ The install will do the following:
 * When you first time install or do 'Up' after destroying k8s cluster, k8s binary files (with the version which was available when the App was built) get copied to CoreOS VMs, this speeds up k8s cluster setup. To update K8s cluster just run from menu 'Updates' - Update Kubernetes cluster and OS X kubectl.
 * It will install `fleetctl, etcdctl and kubectl` to `~/coreos-k8s-cluster/bin/`
 * Kubernetes services will be installed with fleet units which are placed in `~/coreos-k8s-cluster/fleet`, this allows very easy updates to fleet units if needed.
+* Also [DNS Add On](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/cluster/addons/dns) will be installed
 
 How it works
 ------------
@@ -67,6 +68,7 @@ Just start `CoreOS k8s Cluster` application and you will find a small icon with 
 * `node1/2 cAdvisor` will open cAdvisor URL in default browser
 * [Fleet-UI](http://fleetui.com) dashboard will show running fleet units and etc
 * [Kubernetes-UI](https://github.com/GoogleCloudPlatform/kubernetes/tree/master/www) (contributed by [Kismatic.io](http://kismatic.io/)) will show nice Kubernetes Dashboard, where you can check Nodes, Pods, Replication Controllers and etc.
+
 
 
 Example ouput of succesfull CoreOS + Kubernetes cluster install:
