@@ -37,7 +37,7 @@ rm -rf ~/coreos-k8s-cluster/tmp/*
 echo "Downloading latest version of k8s master services"
 bins=( kubectl kube-apiserver kube-scheduler kube-controller-manager )
 for b in "${bins[@]}"; do
-    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
+    curl -k -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
 done
 chmod a+x ~/coreos-k8s-cluster/tmp/*
 tar czvf master.tgz *
@@ -50,7 +50,7 @@ echo " "
 echo "Downloading latest version of k8s node services"
 bins=( kubectl kubelet kube-proxy )
 for b in "${bins[@]}"; do
-    curl -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
+    curl -k -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
 done
 chmod a+x ~/coreos-k8s-cluster/tmp/*
 tar czvf nodes.tgz *
