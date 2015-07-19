@@ -197,6 +197,14 @@ until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
 #
 echo " "
+echo "Installing SkyDNS ..."
+~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
+~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
+# clean up kubernetes folder
+rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
+#
+echo " "
 echo "Installing k8s UI ..."
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
