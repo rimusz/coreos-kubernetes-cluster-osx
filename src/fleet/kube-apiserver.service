@@ -12,8 +12,7 @@ ExecStart=/opt/bin/kube-apiserver \
  --service-cluster-ip-range=10.100.0.0/16 \
  --etcd_servers=http://127.0.0.1:4001 \
  --public_address_override=127.0.0.1 \
- --cors_allowed_origins=.* \
- --logtostderr=true
+ --logtostderr=true \
  --runtime_config=api/v1
 
 Restart=always
