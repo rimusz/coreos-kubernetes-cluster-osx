@@ -52,7 +52,7 @@ spec:
             memory: 50Mi
         args:
         # command = "/skydns"
-        - -machines=http://localhost:4001
+        - -machines=http://localhost:2379
         - -addr=0.0.0.0:53
         - -domain=cluster.local
         - -nameservers=8.8.8.8:53,8.8.4.4:53
@@ -63,12 +63,4 @@ spec:
         - containerPort: 53
           name: dns-tcp
           protocol: TCP
-        livenessProbe:
-          exec:
-            command:
-            - /bin/sh
-            - -c
-            - nslookup kubernetes.kube-system.svc.cluster.local localhost >/dev/null
-          initialDelaySeconds: 30
-          timeoutSeconds: 5
       dnsPolicy: Default  # Don't use cluster DNS.
