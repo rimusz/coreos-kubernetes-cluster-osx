@@ -128,11 +128,12 @@ ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 echo " "
 echo " Installing k8s files to master and nodes:"
 cd ~/coreos-k8s-cluster/control
-vagrant scp master.tgz /home/core/
+vagrant scp master.tgz k8smaster-01:/home/core/
 vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
 #
 cd ~/coreos-k8s-cluster/workers
-vagrant scp nodes.tgz /home/core/
+vagrant scp nodes.tgz k8snode-01:/home/core/
+vagrant scp nodes.tgz k8snode-02:/home/core/
 #
 vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
 vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
