@@ -126,7 +126,7 @@ vagrant up --provider virtualbox
 ssh-add ~/.vagrant.d/insecure_private_key >/dev/null 2>&1
 
 echo " "
-echo " Installing k8s files to master and nodes:"
+echo "Installing k8s files to master and nodes:"
 cd ~/coreos-k8s-cluster/control
 vagrant scp master.tgz k8smaster-01:/home/core/
 vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* " >/dev/null 2>&1
@@ -187,16 +187,27 @@ echo " "
 export KUBERNETES_MASTER=http://172.17.15.101:8080
 echo Waiting for Kubernetes cluster to be ready. This can take a few minutes...
 spin='-\|/'
-i=1
-until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do printf "\b${spin:i++%${#sp}:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl version 2>/dev/null | grep 'Server Version' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+i=0
+until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 # attach label to the nodes
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
 #
+
+echo " "
+echo "Creating kube-system namespace..."
+# use kubectl to create kube-system namespace, this namespace is expected in versions of kubernetes > 1.02
+~/coreos-k8s-cluster/bin/kubectl create -f - <<EOF
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kube-system
+EOF
+
 echo " "
 echo "Installing SkyDNS ..."
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
