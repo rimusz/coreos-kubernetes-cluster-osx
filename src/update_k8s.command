@@ -61,7 +61,7 @@ rm -rf ~/coreos-k8s-cluster/tmp/*
 # install k8s files on master
 echo "Installing latest version of k8s master services"
 cd ~/coreos-k8s-cluster/control
-vagrant scp master.tgz /home/core/
+vagrant scp master.tgz k8smaster-01:/home/core/
 vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8smaster-01 "
 echo " "
@@ -69,7 +69,8 @@ echo " "
 # install k8s files on nodes
 echo "Installing latest version of k8s node services"
 cd ~/coreos-k8s-cluster/workers
-vagrant scp nodes.tgz /home/core/
+vagrant scp nodes.tgz k8snode-01:/home/core/
+vagrant scp nodes.tgz k8snode-02:/home/core/
 #
 vagrant ssh k8snode-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8snode-01 "
@@ -101,9 +102,9 @@ spin='-\|/'
 i=1
 until ~/coreos-k8s-cluster/bin/kubectl version | grep 'Server Version' >/dev/null 2>&1; do printf "\b${spin:i++%${#sp}:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep ' Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl get nodes | grep ' Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 #
 echo " "
 echo "k8s nodes list:"

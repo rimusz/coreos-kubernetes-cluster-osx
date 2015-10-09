@@ -190,23 +190,23 @@ spin='-\|/'
 i=0
 until ~/coreos-k8s-cluster/bin/kubectl version 2>/dev/null | grep 'Server Version' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep 172.17.15.102 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep ' Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
-until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep 172.17.15.103 >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep ' Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 # attach label to the nodes
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
 #
 
-echo " "
-echo "Creating kube-system namespace..."
+#echo " "
+#echo "Creating kube-system namespace..."
 # use kubectl to create kube-system namespace, this namespace is expected in versions of kubernetes > 1.02
-~/coreos-k8s-cluster/bin/kubectl create -f - <<EOF
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: kube-system
-EOF
+#~/coreos-k8s-cluster/bin/kubectl create -f - <<EOF
+#apiVersion: v1
+#kind: Namespace
+#metadata:
+#  name: kube-system
+#EOF
 
 echo " "
 echo "Installing SkyDNS ..."
