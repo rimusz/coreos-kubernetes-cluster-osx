@@ -13,7 +13,7 @@ echo " "
 echo Installing Kubernetes cluster...
 echo " "
 # install vagrant scp plugin
-vagrant plugin install vagrant-scp
+vagrant plugin install --plugin-version 0.4.1 vagrant-scp
 
 ### getting files from github and setting them up
 echo ""
@@ -36,11 +36,14 @@ sed -i "" 's/172.17.8.#{i+100}/172.17.15.#{i+101}/g' ~/coreos-k8s-cluster/worker
 cp ~/coreos-k8s-cluster/tmp/config.rb.sample ~/coreos-k8s-cluster/control/config.rb
 sed -i "" 's/#$instance_name_prefix="core"/$instance_name_prefix="k8smaster"/' ~/coreos-k8s-cluster/control/config.rb
 sed -i "" 's/#$vm_memory = 1024/$vm_memory = 512/' ~/coreos-k8s-cluster/control/config.rb
+sed -i "" 's/File.open/#File.open/' ~/coreos-k8s-cluster/control/config.rb
 # nodes
 cp ~/coreos-k8s-cluster/tmp/config.rb.sample ~/coreos-k8s-cluster/workers/config.rb
 sed -i "" 's/#$instance_name_prefix="core"/$instance_name_prefix="k8snode"/' ~/coreos-k8s-cluster/workers/config.rb
+sed -i "" 's/File.open/#File.open/' ~/coreos-k8s-cluster/workers/config.rb
 # set nodes to 2
 sed -i "" 's/[#]*$num_instances=1/$num_instances=2/' ~/coreos-k8s-cluster/workers/config.rb
+
 
 ###
 

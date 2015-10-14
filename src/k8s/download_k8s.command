@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 #  download_k8s.command
 #  CoreOS Kubernetes Cluster for OS X
@@ -15,12 +15,9 @@ rm -f *.tgz
 
 # get latest k8s version
 function get_latest_version_number {
-local -r latest_url="https://storage.googleapis.com/kubernetes-release/release/latest.txt"
-if [[ $(which wget) ]]; then
-  wget -qO- ${latest_url}
-elif [[ $(which curl) ]]; then
-  curl -Ss ${latest_url}
-fi
+ local -r latest_url="https://storage.googleapis.com/kubernetes-release/release/stable.txt"
+ curl -Ss ${latest_url}
+
 }
 
 K8S_VERSION=$(get_latest_version_number)
