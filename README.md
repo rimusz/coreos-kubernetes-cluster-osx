@@ -109,7 +109,7 @@ Some examples to start with [Kubernetes examples](https://github.com/GoogleCloud
 
 Other links
 -----------
-* A standalone/solo Kubernetes Cluster VM App can be found here [Kubernetes Solo cluster for OS X](https://github.com/rimusz/kube-solo-osx).
+* A solo Kubernetes Cluster VM App can be found here [Kubernetes Solo cluster for OS X](https://github.com/rimusz/kube-solo-osx).
 
 * A standalone one CoreOS VM App (good for docker images building and testing) can be found here [CoreOS-xhyve UI for OS X](https://github.com/rimusz/coreos-xhyve-ui).
 
