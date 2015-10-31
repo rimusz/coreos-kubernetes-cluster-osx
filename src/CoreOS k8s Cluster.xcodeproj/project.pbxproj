@@ -37,6 +37,8 @@
 		01E2855618A6C4E300BC630D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01E2855518A6C4E300BC630D /* Images.xcassets */; };
 		01E285B818A6D7F400BC630D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 01E285B718A6D7F400BC630D /* icon.png */; };
 		01F0282C1A7C54C8008C37AA /* os_shell.command in Resources */ = {isa = PBXBuildFile; fileRef = 01F0282B1A7C54C8008C37AA /* os_shell.command */; };
+		13325B721BE4CFA400D19C75 /* kubectl in Resources */ = {isa = PBXBuildFile; fileRef = 13325B711BE4CFA400D19C75 /* kubectl */; };
+		13325B741BE4CFEE00D19C75 /* gen_kubeconfig in Resources */ = {isa = PBXBuildFile; fileRef = 13325B731BE4CFEE00D19C75 /* gen_kubeconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,8 @@
 		01E2855C18A6C4E300BC630D /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		01E285B718A6D7F400BC630D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		01F0282B1A7C54C8008C37AA /* os_shell.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = os_shell.command; sourceTree = "<group>"; };
+		13325B711BE4CFA400D19C75 /* kubectl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = kubectl; sourceTree = SOURCE_ROOT; };
+		13325B731BE4CFEE00D19C75 /* gen_kubeconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = gen_kubeconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,8 @@
 				01689B721A2D1A260099CB78 /* fleet */,
 				01AD94B71A277708009A400B /* gsed */,
 				011146551A7D9AF7008E0FB2 /* wget */,
+				13325B711BE4CFA400D19C75 /* kubectl */,
+				13325B731BE4CFEE00D19C75 /* gen_kubeconfig */,
 				01741B56190DB7B800BB1F91 /* coreos-vagrant-install.command */,
 				01741B62190DB80500BB1F91 /* first-init.command */,
 			);
@@ -228,7 +234,7 @@
 		01E2853218A6C4E300BC630D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Rimantas Mocevicius";
 				TargetAttributes = {
 					01E2853918A6C4E300BC630D = {
@@ -270,8 +276,10 @@
 				01689B771A2D1CA80099CB78 /* Vagrantfiles in Resources */,
 				01E285B818A6D7F400BC630D /* icon.png in Resources */,
 				01AD94BF1A278C94009A400B /* force_coreos_update.command in Resources */,
+				13325B741BE4CFEE00D19C75 /* gen_kubeconfig in Resources */,
 				0145318418FF209D007F9C95 /* coreos-vagrant.command in Resources */,
 				01741B65190DB81400BB1F91 /* vagrant_up.command in Resources */,
+				13325B721BE4CFA400D19C75 /* kubectl in Resources */,
 				011146561A7D9AF7008E0FB2 /* wget in Resources */,
 				011BBA391A2A829F00AAB35B /* vagrant_destroy.command in Resources */,
 				01BB60D11AB74A680069BF30 /* update_k8s.command in Resources */,
@@ -352,6 +360,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -367,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -399,7 +408,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -418,7 +427,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -439,7 +449,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

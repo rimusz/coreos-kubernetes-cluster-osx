@@ -22,11 +22,17 @@ ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1
 
     # copy gsed to ~/coreos-k8s-cluster/bin
     cp "$1"/gsed ~/coreos-k8s-cluster/bin
-    chmod 755 ~/coreos-k8s-cluster/bin/gsed
 
     # copy wget with https support to ~/coreos-k8s-cluster/bin
     cp "$1"/wget ~/coreos-k8s-cluster/bin
-    chmod 755 ~/coreos-k8s-cluster/bin/wget
+
+    # copy kubectl to ~/coreos-k8s-cluster/bin
+    cp "$1"/kubectl ~/coreos-k8s-cluster/bin
+
+    # copy gen_kubeconfig to ~/coreos-k8s-cluster/bin
+    cp "$1"/gen_kubeconfig ~/coreos-k8s-cluster/bin
+    #
+    chmod 755 ~/coreos-k8s-cluster/bin/*
 
     # copy other files
     # user-data files
@@ -34,8 +40,8 @@ ln -s /opt/vagrant/bin/vagrant /usr/local/bin/vagrant >/dev/null 2>&1
     cp "$1"/Vagrantfiles/user-data.node ~/coreos-k8s-cluster/workers/user-data
 
     # copy k8s files
-    cp "$1"/k8s/kubectl ~/coreos-k8s-cluster/bin
-    chmod 755 ~/coreos-k8s-cluster/bin/kubectl
+    cp "$1"/k8s/kubectl ~/coreos-k8s-cluster/control
+    chmod 755 ~/coreos-k8s-cluster/control/kubectl
     cp "$1"/k8s/*.yaml ~/coreos-k8s-cluster/kubernetes
     # linux binaries
     cp "$1"/k8s/master.tgz ~/coreos-k8s-cluster/control

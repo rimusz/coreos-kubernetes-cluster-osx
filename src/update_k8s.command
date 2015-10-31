@@ -20,9 +20,9 @@ K8S_VERSION=$(get_latest_version_number)
 
 # download latest version of kubectl for OS X
 echo "Downloading kubectl $K8S_VERSION for OS X"
-~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/bin https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
-chmod a+x ~/coreos-k8s-cluster/bin/kubectl
-echo "kubectl was downloaded to ~/coreos-k8s-cluster/bin"
+~/coreos-k8s-cluster/bin/wget -N -P ~/coreos-k8s-cluster/control https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/darwin/amd64/kubectl
+chmod a+x ~/coreos-k8s-cluster/control/kubectl
+echo "kubectl was downloaded to ~/coreos-k8s-cluster/control"
 echo " "
 
 cd ~/coreos-k8s-cluster/tmp
@@ -73,6 +73,11 @@ echo "Done with k8snode-01 "
 echo " "
 vagrant ssh k8snode-02 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/nodes.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
 echo "Done with k8snode-02 "
+#
+
+# generate kubeconfig file
+~/coreos-k8s-cluster/bin/gen_kubeconfig 172.17.15.101
+#
 
 # restart fleet units
 echo "Restarting fleet units:"
