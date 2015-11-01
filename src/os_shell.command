@@ -30,7 +30,7 @@ fleetctl list-units
 echo " "
 
 # set kubernetes master
-export KUBERNETES_MASTER=http://172.17.15.101:8080
+sexport KUBERNETES_MASTER=http://172.17.15.101:8080
 echo "kubectl get nodes:"
 kubectl get nodes
 echo " "

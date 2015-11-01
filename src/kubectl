@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cmd=($HOME/coreos-k8s-cluster/control/kubectl --kubeconfig="$HOME/kube-solo/kube/kubeconfig" "${@+$@}")
+cmd=($HOME/coreos-k8s-cluster/control/kubectl --kubeconfig="$HOME/coreos-k8s-cluster/control/kubeconfig" "${@+$@}")
 
 "${cmd[@]}"
