@@ -1,4 +1,4 @@
-CoreOS-Vagrant Kubernetes Cluster GUI for OS X
+CoreOS-Vagrant Kubernetes Cluster for OS X
 ============================
 ![k8s-multinode](k8s-multinode.png)
 
