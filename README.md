@@ -113,4 +113,4 @@ Other links
 
 * A standalone one CoreOS VM App (good for docker images building and testing) can be found here [CoreOS VM for OS X](https://github.com/rimusz/coreos-osx).
 
-* Cluster one without Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant Cluster](https://github.com/rimusz/coreos-osx-cluster).
+* Cluster one without Kubernetes CoreOS VM App can be found here [CoreOS-Vagrant Cluster for OSX](https://github.com/rimusz/coreos-osx-cluster).
