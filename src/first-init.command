@@ -13,7 +13,7 @@ echo " "
 echo Installing Kubernetes cluster...
 echo " "
 # install vagrant scp plugin
-vagrant plugin install --plugin-version 0.4.1 vagrant-scp
+vagrant plugin install vagrant-scp
 
 ### getting files from github and setting them up
 echo ""
