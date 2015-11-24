@@ -19,6 +19,7 @@ export PATH=${HOME}/coreos-k8s-cluster/bin:$PATH
 export ETCDCTL_PEERS=http://172.17.15.101:2379
 
 # set fleetctl endpoint
+export FLEETCTL_TUNNEL=
 export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
@@ -92,18 +93,22 @@ then
     ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
     #
     echo " "
+    echo "Creating kube-system namespace ..."
+    ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-system-ns.yaml
+    #
+    echo " "
     echo "Installing SkyDNS ..."
     ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
     ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
-    # clean up kubernetes folder
-    rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
-    rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
     #
     echo " "
     echo "Installing Kubernetes UI ..."
     ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
     ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
     # clean up kubernetes folder
+    rm -f ~/coreos-k8s-cluster/kubernetes/kube-system-ns.yaml
+    rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
+    rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
     rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
     rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
 else

@@ -117,7 +117,7 @@ read -p "$*"
 
 # first up to initialise VMs
 echo " "
-echo "Setting up Vagrant VMs for CoreOS Kubernetes Cluster on OS X"
+echo "Setting up Vagrant VMs for CoreOS + Kubernetes Cluster on OS X"
 cd ~/coreos-k8s-cluster/control
 vagrant box update
 vagrant up --provider virtualbox
@@ -171,6 +171,7 @@ echo "etcd cluster:"
 echo " "
 
 # set fleetctl tunnel
+export FLEETCTL_TUNNEL=
 export FLEETCTL_ENDPOINT=http://172.17.15.101:2379
 export FLEETCTL_DRIVER=etcd
 export FLEETCTL_STRICT_HOST_KEY_CHECKING=false
@@ -200,34 +201,29 @@ i=0
 until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep '172.17.15.102' | grep 'Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
 i=0
 until ~/coreos-k8s-cluster/bin/kubectl get nodes 2>/dev/null | grep '172.17.15.103' | grep 'Ready' >/dev/null 2>&1; do i=$(( (i+1) %4 )); printf "\r${spin:$i:1}"; sleep .1; done
+
 # attach label to the nodes
+echo " "
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.102 node=worker1
 ~/coreos-k8s-cluster/bin/kubectl label nodes 172.17.15.103 node=worker2
 #
-
-#echo " "
-#echo "Creating kube-system namespace..."
-# use kubectl to create kube-system namespace, this namespace is expected in versions of kubernetes > 1.02
-#~/coreos-k8s-cluster/bin/kubectl create -f - <<EOF
-#apiVersion: v1
-#kind: Namespace
-#metadata:
-#  name: kube-system
-#EOF
-
+echo " "
+echo "Creating kube-system namespace ..."
+~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-system-ns.yaml
+#
 echo " "
 echo "Installing SkyDNS ..."
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
-# clean up kubernetes folder
-rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
-rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
 #
 echo " "
 echo "Installing Kubernetes UI ..."
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
 ~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
 # clean up kubernetes folder
+rm -f ~/coreos-k8s-cluster/kubernetes/kube-system-ns.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
 rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
 rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
 

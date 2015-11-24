@@ -3,6 +3,7 @@ Description=Kubernetes API Server
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
+EnvironmentFile=/etc/environment
 ExecStartPre=/opt/bin/wupiao 127.0.0.1:8080
 ExecStart=/opt/bin/kube-scheduler --master=127.0.0.1:8080
 

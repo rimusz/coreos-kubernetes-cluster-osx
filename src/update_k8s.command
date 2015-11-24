@@ -30,7 +30,7 @@ cd ~/coreos-k8s-cluster/tmp
 rm -rf ~/coreos-k8s-cluster/tmp/*
 # download latest version of k8s for CoreOS
 # master
-echo "Downloading latest version of k8s master services"
+echo "Downloading k8s $K8S_VERSION master services"
 bins=( kubectl kube-apiserver kube-scheduler kube-controller-manager )
 for b in "${bins[@]}"; do
     curl -k -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
@@ -43,7 +43,7 @@ rm -rf ~/coreos-k8s-cluster/tmp/*
 echo " "
 
 # nodes
-echo "Downloading latest version of k8s node services"
+echo "Downloading k8s $K8S_VERSION node services"
 bins=( kubectl kubelet kube-proxy )
 for b in "${bins[@]}"; do
     curl -k -L https://storage.googleapis.com/kubernetes-release/release/$K8S_VERSION/bin/linux/amd64/$b > ~/coreos-k8s-cluster/tmp/$b
@@ -55,7 +55,7 @@ cp -f nodes.tgz ~/coreos-k8s-cluster/workers/
 rm -rf ~/coreos-k8s-cluster/tmp/*
 
 # install k8s files on master
-echo "Installing latest version of k8s master services"
+echo "Installing k8s $K8S_VERSION master services"
 cd ~/coreos-k8s-cluster/control
 vagrant scp master.tgz k8smaster-01:/home/core/
 vagrant ssh k8smaster-01 -c "sudo /usr/bin/mkdir -p /opt/bin && sudo tar xzf /home/core/master.tgz -C /opt/bin && sudo chmod 755 /opt/bin/* "
@@ -63,7 +63,7 @@ echo "Done with k8smaster-01 "
 echo " "
 
 # install k8s files on nodes
-echo "Installing latest version of k8s node services"
+echo "Installing k8s $K8S_VERSION node services"
 cd ~/coreos-k8s-cluster/workers
 vagrant scp nodes.tgz k8snode-01:/home/core/
 vagrant scp nodes.tgz k8snode-02:/home/core/

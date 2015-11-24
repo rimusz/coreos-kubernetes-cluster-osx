@@ -427,7 +427,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";
@@ -449,7 +449,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.linxos.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "CoreOS k8s Cluster";
 				PROVISIONING_PROFILE = "";

@@ -11,6 +11,7 @@ ExecStart=/opt/bin/kubelet \
  --hostname_override=${COREOS_PRIVATE_IPV4} \
  --api_servers=http://172.17.15.101:8080 \
  --register-node=true \
+ --container_runtime=docker \
  --allow_privileged=true \
  --cluster_dns=10.100.0.10 \
  --cluster_domain=cluster.local \
