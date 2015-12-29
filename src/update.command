@@ -51,9 +51,9 @@ echo "fleetctl was copied to ~/coreos-k8s-cluster/bin "
 echo " "
 
 # get lastest OS X helm version from bintray
-bin_version=$(curl -I https://bintray.com/deis/helm-ci/helm/_latestVersion | grep "Location:" | sed -n 's%.*helm/%%;s%/view.*%%p' )
+bin_version=$(curl -I https://bintray.com/deis/helm/helm/_latestVersion | grep "Location:" | sed -n 's%.*helm/%%;s%/view.*%%p' )
 echo "Downloading helm latest version for OS X"
-curl -L "https://dl.bintray.com/deis/helm-ci/helm-$bin_version-darwin-amd64.zip" -o helm.zip
+curl -L "https://dl.bintray.com/deis/helm/helm-$bin_version-darwin-amd64.zip" -o helm.zip
 unzip -o helm.zip
 rm -f helm.zip
 #
