@@ -20,7 +20,6 @@ ExecStart=/opt/bin/kube-apiserver \
  --etcd_servers=http://127.0.0.1:2379 \
  --public_address_override=127.0.0.1 \
  --logtostderr=true
-# --runtime-config=extensions/v1beta1=true,extensions/v1beta1/daemonsets=true
 
 Restart=always
 RestartSec=10
