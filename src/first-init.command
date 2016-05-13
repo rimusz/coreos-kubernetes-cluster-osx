@@ -218,14 +218,14 @@ echo "Installing SkyDNS ..."
 #
 echo " "
 echo "Installing Kubernetes UI ..."
-~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
-~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/dashboard-controller.yaml
+~/coreos-k8s-cluster/bin/kubectl create -f ~/coreos-k8s-cluster/kubernetes/dashboard-service.yaml
 # clean up kubernetes folder
 rm -f ~/coreos-k8s-cluster/kubernetes/kube-system-ns.yaml
 rm -f ~/coreos-k8s-cluster/kubernetes/skydns-rc.yaml
 rm -f ~/coreos-k8s-cluster/kubernetes/skydns-svc.yaml
-rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-rc.yaml
-rm -f ~/coreos-k8s-cluster/kubernetes/kube-ui-svc.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/dashboard-controller.yaml
+rm -f ~/coreos-k8s-cluster/kubernetes/dashboard-service.yaml
 
 #
 echo " "

@@ -13,6 +13,9 @@ read -p "$*"
 rm -f kubectl
 rm -f *.tgz
 
+mkdir nodes
+mkdir master
+
 # get latest k8s version
 function get_latest_version_number {
  local -r latest_url="https://storage.googleapis.com/kubernetes-release/release/stable.txt"
