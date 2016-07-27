@@ -1,7 +1,7 @@
 CoreOS-Vagrant Kubernetes Cluster for OS X
 ============================
 
-**Note:** This App's [xhyve](https://github.com/TheNewNormal/libxhyve) based alternative is at [Kube-Cluster for OS X](https://github.com/TheNewNormal/kube-cluster-osx) and which accually is more maintained. 
+**Note:** This App is not much maintained anymore, please use it's alternative [Kube-Cluster for OS X](https://github.com/TheNewNormal/kube-cluster-osx) which is quicker to boot and does not need VirtualBox/Vagrant.
 
 ![k8s-multinode](k8s-multinode.png)
 
